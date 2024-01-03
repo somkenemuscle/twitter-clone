@@ -34,25 +34,6 @@ router.post("/:id", isLoggedin, handleAsyncErr(async (req, res, next) => {
 }));
 
 
-//Delete a specific comment in a post by ID
-router.delete("/:id", isLoggedin, handleAsyncErr(async (req, res, next) => {
-    const foundTweet = await Tweet.findById(req.params.id).populate({
-        path: 'comments',
-        populate: {
-            path: 'author'
-        }
-    }).populate('author')
 
-    if (!foundTweet) {
-        return res.status(404).json({ message: "Tweet not found" });
-    }
-    // Check if the authenticated user's ID matches the tweetauthorid of the tweet
-    if (!req.user._id.equals(foundTweet.comments.author._id)) {
-        return res.status(403).json({ message: "Unauthorized: You don't have permission to delete this tweet" });
-    }
-    await Tweet.comments.findByIdAndRemove(foundTweet.comments._id);
-    return res.status(200).json({ message: "Tweet deleted successfully" });
-}
-));
 
 module.exports = router;
