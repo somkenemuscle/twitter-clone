@@ -1,0 +1,52 @@
+.main-tweet-container {
+    margin-bottom: 2%;
+    margin-top: 2%;
+}
+.alert{
+    margin: 0 45%;
+    width: 10%;
+    font-family: helvetica;
+    text-align: center;
+    padding: 7px 7px;
+}
+.tweet-container {
+    margin: 0 37%;
+}
+
+
+/* MEDIA QUERIES */
+@media only screen and (max-width: 1450px) {
+    .tweet-container {
+        margin: 0 33%;
+    }
+}
+
+@media only screen and (max-width: 1052px) {
+    .tweet-container {
+        margin: 0 30%;
+    }
+}
+
+@media only screen and (max-width: 980px) {
+    .tweet-container {
+        margin: 0 25%;
+    }
+}
+
+@media only screen and (max-width: 786px) {
+    .tweet-container {
+        margin: 0 20%;
+    }
+}
+
+@media only screen and (max-width: 640px) {
+    .tweet-container {
+        margin: 0 10%;
+    }
+}
+
+@media only screen and (max-width: 470px) {
+    .tweet-container {
+        margin: 0 1%;
+    }
+}

@@ -1,0 +1,68 @@
+.body {
+    background-color: black;
+}
+
+/* NAVBAR STYLING */
+.navbar {
+    background-color: white;
+    padding: 1% 15%;
+}
+
+.navbar-brand {
+    font-family: arial;
+    font-weight: bolder;
+    font-size: 1.2rem;
+    color: whitesmoke;
+}
+
+.nav-item {
+    margin: 0 10px;
+}
+
+.nav-link {
+    font-size: 1rem;
+    font-family: helvetica;
+}
+
+/* FOOTER STYLING */
+.footer {
+    padding: 5% 15%;
+    text-align: center;
+    font-family: 'Trebuchet MS';
+    font-weight: bolder;
+    font-size: 1rem;
+}
+
+.footer-icon {
+    margin: 0 10px;
+}
+
+.footer-text {
+    color: whitesmoke;
+    font-weight: lighter;
+}
+
+.footer-author {
+    color: white;
+}
+
+
+
+/* MEDIA QUERY FOR RESPONSIVENESS */
+@media only screen and (max-width: 800px) {
+    .navbar {
+        padding: 2% 3%;
+    }
+}
+
+@media only screen and (max-width: 417px) {
+    .tweetaddbtn {
+        margin: 2% 35%;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .tweetaddbtn {
+        margin: 2% 30%;
+    }
+}
