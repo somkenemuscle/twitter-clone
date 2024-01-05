@@ -33,7 +33,4 @@ router.post("/:id", isLoggedin, handleAsyncErr(async (req, res, next) => {
     res.json({ newComment });
 }));
 
-
-
-
 module.exports = router;

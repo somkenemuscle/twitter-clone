@@ -8,7 +8,8 @@ import {
   faCheckCircle,
   faBullseye,
   faHeart,
-  faCircleUp
+  faCircleUp,
+  
 } from "@fortawesome/free-solid-svg-icons";
 
 export default function Home() {

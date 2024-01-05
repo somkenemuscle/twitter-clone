@@ -133,19 +133,22 @@ export default function TweetPage() {
 
       {/* mapping through comments and rendering them */}
       <div className="comment-sec-hd">
-      {!!comments ? (
-        comments.map((newcomment, i) => (
-          <CommentSection
-            key={i}
-            name={newcomment.author.name}
-            username={newcomment.author.username}
-            text={newcomment.comment}
-            time={newcomment.createdAt}
-          />
-        ))
-      ) : null}
+        {!!comments ? (
+          comments.map((newcomment, i) => (
+            <CommentSection
+              key={i}
+              name={newcomment.author.name}
+              username={newcomment.author.username}
+              text={newcomment.comment}
+              time={newcomment.createdAt}
+              id={newcomment._id}
+              author_id={newcomment.author._id}
+
+            />
+          ))
+        ) : null}
       </div>
-     
+
     </div>
   );
 }

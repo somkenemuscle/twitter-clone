@@ -49,6 +49,18 @@ const tweetSchema = new Schema({
     }]
 });
 
+//delete all tweet and comments
+tweetSchema.post('findOneAndDelete', async function (doc) {
+    if (doc) {
+        await Comment.deleteMany({
+            _id: {
+                $in: doc.comments
+            }
+        });
+    }
+});
+
+
 // Create models for Tweet schema
 const Tweet = mongoose.model('Tweet', tweetSchema);
 

@@ -9,7 +9,6 @@ import {
   faCircleCheck,
   faHeart,
   faHeartCircleMinus,
-  faHeartCirclePlus
 
 } from "@fortawesome/free-solid-svg-icons";
 import '../tweet/tweet.css'

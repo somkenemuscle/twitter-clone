@@ -2,7 +2,8 @@ const express = require('express');
 const { Tweet } = require('../models/tweet');
 const router = express.Router();
 const handleAsyncErr = require('../utils/catchAsync');
-const isLoggedin = require('../utils/isLoggedin')
+const isLoggedin = require('../utils/isLoggedin');
+const Comment = require('../models/comment');
 
 // GET all tweets
 router.get("/", async (req, res, next) => {
@@ -39,8 +40,25 @@ router.delete("/:id", isLoggedin, handleAsyncErr(async (req, res, next) => {
     if (!req.user._id.equals(tweet.author._id)) {
         return res.status(403).json({ message: "Unauthorized: You don't have permission to delete this tweet" });
     }
-    await Tweet.findByIdAndRemove(req.params.id);
+    await Tweet.findByIdAndDelete(req.params.id);
     return res.status(200).json({ message: "Tweet deleted successfully" });
+}));
+
+
+// Delete a specific comment by ID in campground and comment model
+router.delete("/:id/comments/:commentid", isLoggedin, handleAsyncErr(async (req, res, next) => {
+    const { id, commentid } = req.params;
+    const foundComment = await Comment.findById(commentid).populate('author');
+    if (!foundComment) {
+        return res.status(404).json({ message: "Comment not found" });
+    }
+    // Check if the authenticated user's ID matches the comment author id of the tweet
+    if (!req.user._id.equals(foundComment.author._id)) {
+        return res.status(403).json({ message: "Unauthorized: You don't have permission to delete this tweet" });
+    }
+    await Tweet.findByIdAndUpdate(id, { $pull: { comments: commentid } });
+    await Comment.findByIdAndDelete(commentid);
+    return res.status(200).json({ message: "Comment deleted successfully" });
 }));
 
 //error handling middleware
