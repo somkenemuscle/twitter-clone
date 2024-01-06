@@ -8,27 +8,21 @@ import { useTweetContext } from "../context/TweetContext";
 import { useUserContext } from '../context/userLog';
 
 
-
 function logIn() {
     // for changing routes
     const router = useRouter();
-
     //global state to check if user is logged in or not
     const { isLoggedIn, setIsLoggedIn } = useUserContext();
     // State for global state flash message
     const { tweetMessage, setTweetMessage } = useTweetContext();
-
-
     //state for tweets
     const [user, setUser] = useState({
         username: '',
         password: ''
-    })
+    });
 
     //form bootsrap validation state
     const [validated, setValidated] = useState(false);
-
-
     //handling input change and updating user state
     function handleChange(e) {
         const { value, name } = e.target;
@@ -77,7 +71,6 @@ function logIn() {
             setValidated(true);
             return; // Exit early if the form is not valid
         }
-
         try {
             // attempt to send login details back to the backend
             await loginUser(user);

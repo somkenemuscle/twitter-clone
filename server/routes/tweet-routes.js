@@ -8,7 +8,7 @@ const Comment = require('../models/comment');
 // GET all tweets
 router.get("/", async (req, res, next) => {
     // Fetch tweets and sort by createdAt field in descending order (newest first)
-    const tweets = await Tweet.find().sort({ createdAt: -1 }).populate('author')
+    const tweets = await Tweet.find().sort({ createdAt: -1 }).populate('author');
     res.json(tweets);
 });
 
@@ -54,7 +54,7 @@ router.delete("/:id/comments/:commentid", isLoggedin, handleAsyncErr(async (req,
     }
     // Check if the authenticated user's ID matches the comment author id of the tweet
     if (!req.user._id.equals(foundComment.author._id)) {
-        return res.status(403).json({ message: "Unauthorized: You don't have permission to delete this tweet" });
+        return res.status(403).json({ message: "Unauthorized: You don't have permission to delete this comment" });
     }
     await Tweet.findByIdAndUpdate(id, { $pull: { comments: commentid } });
     await Comment.findByIdAndDelete(commentid);

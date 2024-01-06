@@ -1,5 +1,3 @@
-import { useParams } from "next/navigation";
-import { useRouter } from 'next/navigation';
 import { useState, useEffect } from "react";
 import axios from 'axios';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,14 +9,10 @@ import {
 import '../tweet/tweet.css'
 
 export default function commentSection(props) {
-  //get tweet id from params 
-  const { tweetid } = useParams();
-  //handling routing
-  const router = useRouter();
   //state for delete and current user info
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  //get current user id from state
   const [currentUserId, setCurrentUserId] = useState(null);
-
   //get token from local storage
   const token = localStorage.getItem('token');
 
@@ -46,24 +40,6 @@ export default function commentSection(props) {
     getCurrentUser();
   }, [token]);
 
-
-  async function handleDelete(id, author_id) {
-    try {
-      // Set the Authorization header with the JWT token
-      const headers = createAuthHeaders(token);
-      //check for authorization for deleting a post
-      if (currentUserId === author_id) {
-        // Make the DELETE request with the provided headers
-        const response = await axios.delete(`http://localhost:4000/api/tweets/${tweetid}/comments/${id}`, {
-          headers: headers,
-        });
-        router.push(`/tweets/${tweetid}`);
-      }
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
   //for token headers
   function createAuthHeaders(token) {
     return {
@@ -89,12 +65,11 @@ export default function commentSection(props) {
               <span className="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
               </span>
               <ul className="dropdown-menu dropdown-menu-dark">
-                <li><span onClick={() => handleDelete(props.id, props.author_id)} className="dropdown-item">Delete</span></li>
+                <li><span onClick={() => props.deleteComment(props.id, props.author_id)} className="dropdown-item">Delete</span></li>
               </ul>
             </span>
           )}
         </div>
-
 
         <p className="card-text">{props.text}</p>
       </div>

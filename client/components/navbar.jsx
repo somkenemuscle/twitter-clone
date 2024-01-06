@@ -25,7 +25,6 @@ function navbar() {
   async function logout() {
     localStorage.removeItem('token');
     setIsLoggedIn(false);
-    router.push('/login');
   }
 
   return (
@@ -58,7 +57,7 @@ function navbar() {
             {/* Conditionally render Logout link */}
             {isLoggedIn ? (
               <li className="nav-item">
-                <a onClick={logout} className="nav-link active" aria-current="page" href="#">
+                <a onClick={logout} className="nav-link active" aria-current="page" href="/login">
                   Logout
                 </a>
               </li>

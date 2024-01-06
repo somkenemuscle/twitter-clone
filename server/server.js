@@ -1,9 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const tweetRoutes = require('./routes/tweet-routes');  
-const userRoutes = require('./routes/users');  
-const getUserRoutes = require('./routes/getUser');  
+const tweetRoutes = require('./routes/tweet-routes');
+const userRoutes = require('./routes/users');
+const getUserRoutes = require('./routes/getUser');
 const commentRoutes = require('./routes/comment');
 const passport = require('./passport-auth/passport');
 
@@ -30,11 +30,11 @@ app.use(passport.initialize());
 
 
 // Routes for user-related operations
-app.use('/api/user',getUserRoutes); // Mount user-related routes under /api/user
+app.use('/api/user', getUserRoutes); // Mount user-related routes under /api/user
 // Use routes for both tweets and user 
-app.use('/api/tweets', tweetRoutes,userRoutes);
+app.use('/api/tweets', tweetRoutes, userRoutes);
 //route for comments
-app.use('/api/comments',commentRoutes );
+app.use('/api/comments', commentRoutes);
 
 //Listen for port
 const PORT = process.env.PORT || 4000;

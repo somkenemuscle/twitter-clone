@@ -15,30 +15,51 @@ import {
 
 
 export default function TweetPage() {
-
   //global state to check if user is logged in or not
   const { isLoggedIn, setIsLoggedIn } = useUserContext();
+  //handling routing 
+  const router = useRouter();
+  //keeping track of id state
+  const [tweets, setTweets] = useState(); //possible initialize with null later on as undefined might not be appropriate
+  //keep track of comment state 
+  const [comments, setComments] = useState();
+  //get tweet id from params 
+  const { tweetid } = useParams();
+  //get current user id from state
+  const [currentUserId, setCurrentUserId] = useState(null);
+  //get token from local storage
+  const token = localStorage.getItem('token');
+  
+
+
+  // Fetch current user ID if logged in
+  useEffect(() => {
+    async function getCurrentUser() {
+      try {
+        if (token) {
+          const headers = createAuthHeaders(token);
+          //get currentuser id and save to state
+          const response = await axios.get(`http://localhost:4000/api/user`, {
+            headers: headers,
+          });
+          setCurrentUserId(response.data._id);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getCurrentUser();
+  }, [token]);
 
   //get token and see if a user is loggged in 
   useEffect(() => {
-    // Check if the token exists in localStorage
-    const token = localStorage.getItem('token');
     if (token) {
       setIsLoggedIn(true);
     } else {
       setIsLoggedIn(false);
     }
   }, []);
-  //handling routing 
-  const router = useRouter();
 
-  //keeping track of id state
-  const [tweets, setTweets] = useState(); //possible initialize with null later on as undefined might not be appropriate
-  //keep track of comment state 
-  const [comments, setComments] = useState();
-
-  //get tweet id from params 
-  const { tweetid } = useParams();
 
   // Fetch tweet data based on the 'tweetid' and display it
   useEffect(() => {
@@ -69,13 +90,8 @@ export default function TweetPage() {
   //add tweet to database function
   async function addComment(comments) {
     try {
-      const token = localStorage.getItem('token');
       // Set the Authorization header with the JWT token
-      const headers = {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json' // You can set other headers if needed
-      };
-
+      const headers = createAuthHeaders(token);
       const res = await axios.post(`http://localhost:4000/api/comments/${tweetid}`, {
         comment: comments.comment,
       }, { headers }); // Pass headers as a third argument to axios.post()
@@ -87,6 +103,34 @@ export default function TweetPage() {
     } catch (error) {
       console.log(error)
     }
+  }
+
+  //hadle deleting of a comment
+  async function deleteComment(id, author_id) {
+    try {
+      // Set the Authorization header with the JWT token
+      const headers = createAuthHeaders(token);
+      //check for authorization for deleting a post
+      if (currentUserId === author_id) {
+        // Make the DELETE request with the provided headers
+        const response = await axios.delete(`http://localhost:4000/api/tweets/${tweetid}/comments/${id}`, {
+          headers: headers,
+        });
+        // Fetch updated tweets after successful addition
+        const updatedCommentsResponse = await axios.get(`http://localhost:4000/api/comments/${tweetid}`);
+        setComments(updatedCommentsResponse.data); // Update local state with the updated comments
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  //for token headers
+  function createAuthHeaders(token) {
+    return {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    };
   }
 
   //handle redirect back to tweets page 
@@ -119,13 +163,14 @@ export default function TweetPage() {
         author_id={tweets.author._id}
         time={tweets.createdAt}
       />
+
       {/* render create tweet form if user is logged in or not */}
       {isLoggedIn ? (
         <NewComment addComment={addComment} />
       ) : null}
 
-      {/* displays comments under tweet */}
 
+      {/* displays comments under tweet */}
       <div className="comment-header">
         <span>View all comments ...</span>
       </div>
@@ -143,7 +188,7 @@ export default function TweetPage() {
               time={newcomment.createdAt}
               id={newcomment._id}
               author_id={newcomment.author._id}
-
+              deleteComment={deleteComment}
             />
           ))
         ) : null}

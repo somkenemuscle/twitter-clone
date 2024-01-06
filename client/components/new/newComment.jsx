@@ -43,6 +43,7 @@ function newComment(props) {
         }
     }
 
+
     return (
         <div>
             <div className='new-tweet-container'>
