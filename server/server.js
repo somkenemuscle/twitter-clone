@@ -33,7 +33,7 @@ app.use(passport.initialize());
 app.use('/api/user', getUserRoutes); // Mount user-related routes under /api/user
 // Use routes for both tweets and user 
 app.use('/api/tweets', tweetRoutes, userRoutes);
-//route for comments
+//Routes for comments
 app.use('/api/comments', commentRoutes);
 
 //Listen for port

@@ -4,7 +4,6 @@
     border: 1px solid rgb(42, 40, 40);
     border-radius: 10px;
     padding: 4% 2%;
-    font-family: helvetica;
     color: whitesmoke;
     font-weight: lighter;
 }
@@ -31,8 +30,9 @@
 .card-text {
     line-height: 1.4;
     font-size: 15px;
-    font-family: helvetica;
+    font-family: "Montserrat", sans-serif;
     max-width: 100%;
+    font-weight: 1000px;
     overflow-wrap: break-word;
     white-space: pre-wrap;
 }

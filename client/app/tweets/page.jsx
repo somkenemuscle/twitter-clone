@@ -11,6 +11,9 @@ import { useUserContext } from '../context/userLog';
 export default function Tweets() {
   //global state to check if user is logged in or not
   const { isLoggedIn, setIsLoggedIn } = useUserContext();
+  //handling tweet state
+  const [tweets, setTweets] = useState([]);
+  const { tweetMessage, setTweetMessage } = useTweetContext();
 
   //get token and see if a user is loggged in 
   useEffect(() => {
@@ -23,10 +26,6 @@ export default function Tweets() {
     }
   }, []);
 
-
-  //handling tweet state
-  const [tweets, setTweets] = useState([]);
-  const { tweetMessage, setTweetMessage } = useTweetContext();
 
   //fetching data-tweets from json api
   useEffect(() => {

@@ -2,7 +2,6 @@ import Image from "next/image";
 import axios from "axios";
 import { useRouter } from 'next/navigation';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import {
   faRetweet,
   faComment,
@@ -15,23 +14,21 @@ import '../tweet/tweet.css'
 import { useState, useEffect } from "react";
 
 export default function tweetContainer(props) {
-
   //state to keep track of showing all text
   const [showAll, setShowAll] = useState();
   const maxLength = 280; // Set your desired maximum word length
+  //handling routing
+  const router = useRouter();
+  //state for delete and current user info
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  //state to store user id currently
+  const [currentUserId, setCurrentUserId] = useState(null);
+  //get token from local storage
+  const token = localStorage.getItem('token');
 
   const toggleShowAll = () => {
     setShowAll(!showAll);
   };
-  //handling routing
-  const router = useRouter();
-
-  //state for delete and current user info
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentUserId, setCurrentUserId] = useState(null);
-
-  //get token from local storage
-  const token = localStorage.getItem('token');
 
   // Check if user is logged in
   useEffect(() => {
@@ -89,6 +86,12 @@ export default function tweetContainer(props) {
     router.push(`/tweets/${id}`);
   }
 
+  //handling redirect to a specific id ( id passed to the function from props.id)
+  function gotoPage(id) {
+    router.push(`/posts/${id}`);
+  }
+
+
   //change the date format to yy/mm/dd
   const options = { month: 'short', day: '2-digit', year: 'numeric' };
   const formattedDate = new Date(props.time).toLocaleDateString('en-US', options);
@@ -97,8 +100,8 @@ export default function tweetContainer(props) {
     <div className="tweet-card" >
       <div >
         <div>
-          <span> <FontAwesomeIcon icon={faHeartCircleMinus} style={{ fontSize: 15, color: "lightgreen" }} />  </span>
-          <span className="card-title">{props.name}</span> <FontAwesomeIcon icon={faCircleCheck} style={{ fontSize: 15, color: "#1DA1F2" }} /> <span className="subtitle">@{props.username}. {formattedDate}</span>
+          <span> <FontAwesomeIcon icon={faHeartCircleMinus} style={{ fontSize: 15, color: "" }} />  </span>
+          <span onClick={() => gotoPage(props.author_id)} className="card-title">{props.name}</span> <FontAwesomeIcon icon={faCircleCheck} style={{ fontSize: 15, color: "#1DA1F2" }} /> <span className="subtitle">@{props.username}. {formattedDate}</span>
           <span className="delete-btn dropdown">
             <span className="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
             </span>

@@ -35,7 +35,6 @@
     color: gray;
     font-weight: bold;
     font-size: 13px;
-    font-family: Helvetica;
 
 }
 .comment-sec-hd{
@@ -44,7 +43,6 @@
 
 /* error page style */
 .id-error-header {
-    font-family: helvetica;
     font-weight: bold;
     text-align: center;
     margin-top: 10%;

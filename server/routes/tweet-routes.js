@@ -12,6 +12,15 @@ router.get("/", async (req, res, next) => {
     res.json(tweets);
 });
 
+// Route to get all tweets for a specific user
+router.get('/:userId/posts', handleAsyncErr(async (req, res) => {
+    const userId = req.params.userId;
+    // Find all tweets by a particular user
+    const tweets = await Tweet.find({ author: userId }).sort({ createdAt: -1 }).populate('author');
+    res.json(tweets);
+}));
+
+
 // POST a new tweet
 router.post("/", isLoggedin, handleAsyncErr(async (req, res, next) => {
     const newTweet = await Tweet.create({

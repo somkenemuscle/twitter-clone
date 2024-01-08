@@ -29,7 +29,6 @@ export default function TweetPage() {
   const [currentUserId, setCurrentUserId] = useState(null);
   //get token from local storage
   const token = localStorage.getItem('token');
-  
 
 
   // Fetch current user ID if logged in
