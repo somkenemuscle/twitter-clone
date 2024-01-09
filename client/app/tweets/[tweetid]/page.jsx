@@ -6,8 +6,9 @@ import TweetContainer from "@/components/tweet/tweetContainer";
 import CommentSection from "@/components/tweet/commentSection";
 import NewComment from "@/components/new/newComment";
 import { useUserContext } from '../../context/userLog';
-import "./tweetid.css";
+import "../../styles/tweetcontainer.css";
 import { useRouter } from 'next/navigation';
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowLeft
@@ -27,17 +28,26 @@ export default function TweetPage() {
   const { tweetid } = useParams();
   //get current user id from state
   const [currentUserId, setCurrentUserId] = useState(null);
-  //get token from local storage
-  const token = localStorage.getItem('token');
+  //save token to a state if it is available
+  const [token, setToken] = useState(null)
 
+  //get token and see if a user is loggged in 
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      setToken(storedToken);
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
 
-  // Fetch current user ID if logged in
+  //Fetch current user ID if logged in
   useEffect(() => {
     async function getCurrentUser() {
       try {
         if (token) {
           const headers = createAuthHeaders(token);
-          //get currentuser id and save to state
           const response = await axios.get(`http://localhost:4000/api/user`, {
             headers: headers,
           });
@@ -50,14 +60,7 @@ export default function TweetPage() {
     getCurrentUser();
   }, [token]);
 
-  //get token and see if a user is loggged in 
-  useEffect(() => {
-    if (token) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-  }, []);
+
 
 
   // Fetch tweet data based on the 'tweetid' and display it
@@ -88,6 +91,7 @@ export default function TweetPage() {
 
   //add tweet to database function
   async function addComment(comments) {
+    const token = localStorage.getItem('token');
     try {
       // Set the Authorization header with the JWT token
       const headers = createAuthHeaders(token);
@@ -106,6 +110,7 @@ export default function TweetPage() {
 
   //hadle deleting of a comment
   async function deleteComment(id, author_id) {
+    const token = localStorage.getItem('token');
     try {
       // Set the Authorization header with the JWT token
       const headers = createAuthHeaders(token);

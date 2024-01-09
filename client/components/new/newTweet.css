@@ -1,8 +1,6 @@
 .new-tweet-container {
   margin: 1% auto;
-  /* Center the container horizontally */
   max-width: 26%;
-  /* Limit the maximum width of the container */
 }
 
 .form-control {
@@ -38,19 +36,6 @@
   .new-tweet-container {
     margin: 2% 20%;
   }
-
-  /* .btn-add-container {
-      position: fixed;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      opacity: 0.3;
-  }
-
-  .btn-add-container:active {
-      opacity: 1;
-  } */
 }
 
 @media only screen and (max-width: 640px) {
@@ -64,8 +49,5 @@
     margin: 2% 1%;
   }
 
-  /* .main-tweet-container {
-      margin-bottom: 18%;
-  } */
 
 }

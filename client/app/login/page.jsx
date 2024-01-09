@@ -1,6 +1,6 @@
 'use client'
 import './login.css'
-import Footer from '@/components/fixed-footer'
+import Footer from '@/components/footers/fixed-footer'
 import axios from "axios";
 import { useState } from 'react'
 import { useRouter } from 'next/navigation';
@@ -12,9 +12,9 @@ function logIn() {
     // for changing routes
     const router = useRouter();
     //global state to check if user is logged in or not
-    const { isLoggedIn, setIsLoggedIn } = useUserContext();
+    const { setIsLoggedIn } = useUserContext();
     // State for global state flash message
-    const { tweetMessage, setTweetMessage } = useTweetContext();
+    const { setTweetMessage } = useTweetContext();
     //state for tweets
     const [user, setUser] = useState({
         username: '',

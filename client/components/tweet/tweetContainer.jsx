@@ -10,7 +10,7 @@ import {
   faHeartCircleMinus,
 
 } from "@fortawesome/free-solid-svg-icons";
-import '../tweet/tweet.css'
+import '../tweet/tweet-comment.css'
 import { useState, useEffect } from "react";
 
 export default function tweetContainer(props) {
@@ -90,7 +90,6 @@ export default function tweetContainer(props) {
   function gotoPage(id) {
     router.push(`/posts/${id}`);
   }
-
 
   //change the date format to yy/mm/dd
   const options = { month: 'short', day: '2-digit', year: 'numeric' };

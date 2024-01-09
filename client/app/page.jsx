@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import './styles/home.css';
-import Footer from "@/components/footer";
+import Footer from "@/components/footers/footer";
 // import the icons you need
 import {
   faFolderOpen,

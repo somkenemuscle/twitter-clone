@@ -1,5 +1,4 @@
 /* /TWEETS STYLE SECTION ************************************************************ */
-
 .tweet-card {
     border: 1px solid rgb(42, 40, 40);
     border-radius: 10px;
@@ -32,7 +31,7 @@
     font-size: 15px;
     font-family: "Montserrat", sans-serif;
     max-width: 100%;
-    font-weight: 1000px;
+    font-weight: 200;
     overflow-wrap: break-word;
     white-space: pre-wrap;
 }

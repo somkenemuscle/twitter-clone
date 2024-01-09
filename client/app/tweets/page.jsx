@@ -48,16 +48,13 @@ export default function Tweets() {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json' // You can set other headers if needed
       };
-
       const res = await axios.post("http://localhost:4000/api/tweets/", {
         text: tweet.text,
         image: tweet.image
       }, { headers }); // Pass headers as a third argument to axios.post()
-
       // Fetch updated tweets after successful addition
       const updatedTweetsResponse = await axios.get("http://localhost:4000/api/tweets");
       setTweets(updatedTweetsResponse.data); // Update local state with the updated tweets
-
       // Set flash message on successful tweet addition
       setTweetMessage('Tweet added');
 

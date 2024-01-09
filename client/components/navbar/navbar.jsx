@@ -1,14 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { faHamburger } from "@fortawesome/free-solid-svg-icons";
-import { useUserContext } from '../app/context/userLog';
+import { useUserContext } from '../../app/context/userLog';
 
 // Navbar function component
 function navbar() {
-  //for handling routes
-  const router = useRouter();
-
   //global state to check if user is logged in or not
   const { isLoggedIn, setIsLoggedIn } = useUserContext();
 

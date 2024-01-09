@@ -1,4 +1,3 @@
-
 /* HOMEPAGE STYLING  AND ABOUT PAGE ********************************************** */
 /* TITLE SECTION STYLING */
 .title {
@@ -8,22 +7,18 @@
 }
 
 .title-header {
-    
     line-height: 1.2;
     font-weight: bolder;
     font-size: 50px;
-    
 }
 
 .title-text {
-  
     color: grey;
     font-size: 17px;
 }
 
 .dw-btn {
     margin: 2% 1% 2% 0;
-   
     font-weight: lighter;
     padding: 8px 13px;
 }
@@ -35,14 +30,12 @@
 
 .features-header {
     font-weight: bolder;
-    
     font-size: 1.5rem;
     color: whitesmoke;
 }
 
 .features-p {
     color: #8f8f8f;
-   
     font-weight: light;
 }
 
@@ -56,7 +49,6 @@
 
 .testimonial-text {
     font-weight: bold;
-  
     line-height: 1.2;
 }
 
@@ -67,7 +59,6 @@
 /* CARDS STYLING */
 .home-card {
     border-radius: 20px;
-    
     background-color: black;
     border: 1px solid rgb(12, 11, 11);
 }
@@ -93,16 +84,16 @@
 .home-card-text {
     color: #8f8f8f;
 }
+
 /* HOMEPAGE STYLING  AND ABOUT PAGE ends here ********************************************** */
 @media only screen and (max-width: 768px) {
     .title-header {
         font-size: 30px;
     }
 }
+
 @media only screen and (max-width: 487px) {
     .title-header {
         font-size: 22px;
     }
 }
-
-

@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Footer from "@/components/footer";
+import Footer from "@/components/footers/footer";
 import  '../styles/home.css';
 
 // import the icons you need

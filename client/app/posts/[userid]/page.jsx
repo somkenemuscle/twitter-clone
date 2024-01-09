@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useParams } from "next/navigation";
 import TweetContainer from "@/components/tweet/tweetContainer";
 import './post.css'
+
 function posts() {
   //getting user id from url params
   const { userid } = useParams();
@@ -38,7 +39,7 @@ function posts() {
           console.error("Error fetching tweets:", error);
         });
     }
-  }, [userid]); // Include userid as a dependen
+  }, [userid]); // Include userid as a dependency
 
 
   return (
@@ -47,8 +48,12 @@ function posts() {
       {tweets && tweets.length > 0 ? (
         <>
           <p>POSTS</p>
-          <p>{user.name}</p>
-          <p>{user.username}</p>
+          {user && (
+            <>
+              <p>{user.name}</p>
+              <p>{user.username}</p>
+            </>
+          )}
           {tweets.map((newtweet, i) => (
             <TweetContainer
               id={newtweet._id}

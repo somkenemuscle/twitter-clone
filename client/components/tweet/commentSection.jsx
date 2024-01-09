@@ -6,7 +6,7 @@ import {
   faCircleCheck,
   faHeart
 } from "@fortawesome/free-solid-svg-icons";
-import '../tweet/tweet.css'
+import '../tweet/tweet-comment.css'
 
 export default function commentSection(props) {
   //state for delete and current user info
