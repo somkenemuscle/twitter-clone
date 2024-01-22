@@ -8,7 +8,6 @@ import NewComment from "@/components/new/newComment";
 import { useUserContext } from '../../context/userLog';
 import "../../styles/tweetcontainer.css";
 import { useRouter } from 'next/navigation';
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowLeft
@@ -145,8 +144,6 @@ export default function TweetPage() {
   // Loading state while fetching data (error handling)
   if (!tweets) {
     return (<div>
-      <h3 className="id-error-header">This Page does not exist</h3>
-      <p className="id-error-txt">We could not find the page you are looking for</p>
     </div>);
   }
 

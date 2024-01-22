@@ -21,6 +21,10 @@
     font-weight: bolder;
 }
 
+.card-title:hover {
+    text-decoration: underline;
+}
+
 .subtitle {
     font-weight: light;
     color: gray;
@@ -49,7 +53,6 @@
 .engagement-container {
     margin-top: 2%;
 }
-
 
 .comment-tweet:hover {
     color: burlywood;

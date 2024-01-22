@@ -1,13 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { faHamburger } from "@fortawesome/free-solid-svg-icons";
 import { useUserContext } from '../../app/context/userLog';
-
 // Navbar function component
 function navbar() {
   //global state to check if user is logged in or not
   const { isLoggedIn, setIsLoggedIn } = useUserContext();
-
+  const [loading, setLoading] = useState(true);
+  
   useEffect(() => {
     // Check if the token exists in localStorage
     const token = localStorage.getItem('token');
@@ -16,11 +16,21 @@ function navbar() {
     } else {
       setIsLoggedIn(false);
     }
+    setLoading(false);
   }, []);
 
   async function logout() {
     localStorage.removeItem('token');
     setIsLoggedIn(false);
+  }
+
+  if (loading) {
+    return (
+      <nav className="navbar navbar-expand-lg navbar-dark bg-black">
+        <div className="container-nav">
+        </div>
+      </nav>
+    );
   }
 
   return (

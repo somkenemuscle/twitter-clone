@@ -1,6 +1,6 @@
 .body {
     background-color: black;
-    font-family: "Montserrat", sans-serif;
+    font-weight: light;
 }
 
 /* NAVBAR STYLING */
@@ -13,6 +13,9 @@
     font-weight: bolder;
     font-size: 1.2rem;
     color: whitesmoke;
+}
+.container-nav{
+    padding: 1.5% 15%;
 }
 
 .nav-item {
