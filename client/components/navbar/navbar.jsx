@@ -55,7 +55,7 @@ function navbar() {
                   <a className="nav-link active" aria-current="page" href="/login">Login</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link active" aria-current="page" href="/signup">Signup</a>
+                  <a className="nav-link active" aria-current="page" href="/signup">Sign-up</a>
                 </li>
               </>
             )}
