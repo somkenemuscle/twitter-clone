@@ -17,8 +17,8 @@ export default function footer() {
           <FontAwesomeIcon className="footer-icon"  icon={faSimCard} style={{ fontSize: 20, color: "lightgreen" }} />
           <FontAwesomeIcon  className="footer-icon" icon={faAddressBook} style={{ fontSize: 20, color: "gray" }} />
           </p>
-        <p className="footer-text">© Copyright 2023, Benocide</p>
-        <span className="footer-author">Ojukwu Somkene . I</span>
+        <p className="footer-text">© Copyright 2023/24, Retweet</p>
+        <span className="footer-author">Ojukwu Somkene . Ifechukwu</span>
       </footer>
     </div>
   )
