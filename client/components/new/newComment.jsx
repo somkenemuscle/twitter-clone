@@ -50,9 +50,9 @@ function newComment(props) {
                 <form className={validated ? 'was-validated' : ''} noValidate onSubmit={handlesubmit}>
                     <textarea onChange={handleChange} value={comments.comment} required className="tweet-input form-control" rows="3" placeholder='Say something' name='comment'></textarea>
                     <div className="invalid-feedback">
-                        say something and make a comment
+                        say something
                     </div>
-                    <button className='btn btn-sm btn-dark'>post a new comment</button>
+                    <button className='btn btn-sm btn-dark'>post comment</button>
                 </form>
             </div>
         </div>
