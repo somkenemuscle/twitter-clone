@@ -52,7 +52,7 @@ function newComment(props) {
                     <div className="invalid-feedback">
                         say something
                     </div>
-                    <button className='btn btn-sm btn-dark'>post comment</button>
+                    <button className='btn btn-sm btn-dark'>make comment</button>
                 </form>
             </div>
         </div>
