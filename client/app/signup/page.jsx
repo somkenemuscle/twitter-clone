@@ -25,7 +25,7 @@ function signUp() {
         about: '',
         niche: '',
         gender: '',
-        dob: '',
+        date_of_birth: '',
         socials: ''
 
     })
@@ -55,7 +55,7 @@ function signUp() {
                 niche: user.niche,
                 about: user.about,
                 gender: user.gender,
-                date_of_birth: user.dob,
+                date_of_birth: user.date_of_birth,
                 socials: user.socials,
             });
             // Destructuring message and token from response.data
@@ -138,7 +138,7 @@ function signUp() {
                         </div>
 
                         <div className="col-lg-12 col-md-12">
-                            <select className="tweet-input form-control" defaultValue={'Select'} name="niche">
+                            <select onChange={handleChange} className="tweet-input form-control" defaultValue={'Select'} name="niche">
                                 <option value="Select" disabled >Choose Niche ....</option>
                                 <option value="Artist/Writer">Writer/Artist</option>
                                 <option value="Rapper">Rapper</option>
@@ -147,7 +147,7 @@ function signUp() {
                         </div>
 
                         <div className="col-lg-12 col-md-12">
-                            <select className="tweet-input form-control" defaultValue={'Select'} name="gender">
+                            <select onChange={handleChange} className="tweet-input form-control" defaultValue={'Select'} name="gender">
                                 <option value="Select" disabled >Choose Gender...</option>
                                 <option value=" Male">Male</option>
                                 <option value="Female">Female</option>
@@ -160,7 +160,7 @@ function signUp() {
                         </div>
 
                         <div className="col-lg-12 col-md-12">
-                            <input onChange={handleChange} type="date" value={user.dob} className="tweet-input form-control" placeholder="Birth year" name='date_of_birth' />
+                            <input onChange={handleChange} type="date" value={user.date_of_birth} className="tweet-input form-control" placeholder="Birth year" name='date_of_birth' />
                         </div>
                     </div>
                     <button className='btn btn-sm btn-dark'>Sign Up</button>
