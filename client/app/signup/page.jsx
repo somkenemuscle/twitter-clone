@@ -133,6 +133,8 @@ function signUp() {
                         </div>
 
                         {/* profile setup */}
+                        
+                        <p style={{ textAlign: "center", color: "white" }}>Set up your profile !!</p>
                         <div className="col-lg-12 col-md-12">
                             <textarea onChange={handleChange} type="text" value={user.about} className="tweet-input form-control" placeholder="Describe your bio" name='about' />
                         </div>
