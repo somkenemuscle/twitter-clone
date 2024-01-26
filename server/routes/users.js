@@ -33,7 +33,6 @@ router.post("/signup", handleAsyncErr(async (req, res, next) => {
             date_of_birth,
             socials,
             gender
-
         });
 
         // Save the user to the database

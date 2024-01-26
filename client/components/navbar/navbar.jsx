@@ -62,19 +62,11 @@ function navbar() {
 
             {/* Conditionally render Logout link */}
             {isLoggedIn ? (
-              <>
-                <li className="nav-item">
-                  <a onClick={logout} className="nav-link active" aria-current="page" href="/login">
-                    Logout
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link active" aria-current="page" href="#">
-                    Profile
-                  </a>
-                </li>
-              </>
-
+              <li className="nav-item">
+                <a onClick={logout} className="nav-link active" aria-current="page" href="/login">
+                  Logout
+                </a>
+              </li>
             ) : null}
           </ul>
         </div>

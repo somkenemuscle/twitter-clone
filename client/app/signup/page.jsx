@@ -56,7 +56,7 @@ function signUp() {
                 about: user.about,
                 gender: user.gender,
                 date_of_birth: user.date_of_birth,
-                socials: user.socials,
+                socials: user.socials
             });
             // Destructuring message and token from response.data
             const { message, token } = response.data;
@@ -133,7 +133,7 @@ function signUp() {
                         </div>
 
                         {/* profile setup */}
-                        
+
                         <p style={{ textAlign: "center", color: "white" }}>Set up your profile !!</p>
                         <div className="col-lg-12 col-md-12">
                             <textarea onChange={handleChange} type="text" value={user.about} className="tweet-input form-control" placeholder="Describe your bio" name='about' />
@@ -144,7 +144,7 @@ function signUp() {
                                 <option value="Select" disabled >Choose Niche ....</option>
                                 <option value="Artist/Writer">Writer/Artist</option>
                                 <option value="Rapper">Rapper</option>
-                                <option value="Content Creator">Content Creator</option>
+                                <option value="Content Creator">Sports</option>
                             </select>
                         </div>
 
