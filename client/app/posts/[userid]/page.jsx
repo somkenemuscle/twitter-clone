@@ -58,39 +58,40 @@ function posts() {
 
   return (
     <div className="post-container">
-      {tweets && tweets.length > 0 ? (
-        <>
+      {user && (
+        <div>
           <p>POSTS</p>
-          {user && (
-            <div>
-              <p>{user.name}</p>
-              <p>@{user.username}</p>
-              <p>{user.about}</p>
-              <p>Gender - {user.gender}</p>
-              <p><FontAwesomeIcon icon={faLocationDot} style={{ fontSize: 15, color: "grey" }} />   {user.niche}</p>
-              <a style={{ textDecoration: "none", color: 'lightblue' }} href={user.socials}><FontAwesomeIcon icon={faLink} style={{ fontSize: 15, color: "grey" }} />   {user.socials}</a>
-              <p><FontAwesomeIcon icon={faCalendarDays} style={{ fontSize: 15, color: "grey" }} />  Joined {formattedDate}</p>
-              <br />
-            </div>
-          )}
-          {tweets.map((newtweet, i) => (
-            <TweetContainer
-              id={newtweet._id}
-              key={i}
-              name={newtweet.author.name}
-              username={newtweet.author.username}
-              text={newtweet.text}
-              url={newtweet.image}
-              author_id={newtweet.author._id}
-              time={newtweet.createdAt}
-            />
-          ))}
-        </>
+          <p>{user.name}</p>
+          <p>@{user.username}</p>
+          <p>{user.about}</p>
+          <div>Gender - {user.gender}</div>
+          <span><FontAwesomeIcon icon={faLocationDot} style={{ fontSize: 15, color: "grey" }} /> {user.niche}</span>
+          <a style={{ textDecoration: "none", color: 'lightblue' }} href={user.socials}>
+            <FontAwesomeIcon icon={faLink} style={{ fontSize: 15, color: "grey" }} />
+            {' '}{user.socials.slice(0, 20)}{user.socials.length > 20 ? ' ...' : ''}
+          </a>
+          <div><FontAwesomeIcon icon={faCalendarDays} style={{ fontSize: 15, color: "grey" }} /> Joined {formattedDate}</div>
+          <br />
+        </div>
+      )}
+
+      {tweets && tweets.length > 0 ? (
+        tweets.map((newtweet, i) => (
+          <TweetContainer
+            id={newtweet._id}
+            key={i}
+            name={newtweet.author.name}
+            username={newtweet.author.username}
+            text={newtweet.text}
+            url={newtweet.image}
+            author_id={newtweet.author._id}
+            time={newtweet.createdAt}
+          />
+        ))
       ) : (
-        <p>No tweets found.</p>
+        <p>No tweets Made Yet.</p>
       )}
     </div>
-  )
+  );
 }
-
 export default posts

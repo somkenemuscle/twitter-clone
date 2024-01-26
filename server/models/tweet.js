@@ -15,6 +15,10 @@ const imageSchema = Joi.string().uri({
 
 // Custom validator function using Joi
 const imageValidator = (value) => {
+    if (!value) {
+        // Allow empty values
+        return true;
+    }
     const { error } = imageSchema.validate(value);
     if (error) {
         throw new Error('Invalid image URL. Please provide a valid HTTP or HTTPS URL for the image.');
@@ -26,11 +30,17 @@ const imageValidator = (value) => {
 const tweetSchema = new Schema({
     text: {
         type: String,
-        required: true
+        required: function () {
+            // 'this' refers to the document being validated
+            return !this.image;
+        }
     },
     image: {
         type: String,
-        required: true,
+        required: function () {
+            // 'this' refers to the document being validated
+            return !this.text;
+        },
         validate: {
             validator: imageValidator
         }
