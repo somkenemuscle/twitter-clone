@@ -8,7 +8,7 @@ const handleAsyncErr = require('../utils/catchAsync');
 
 // /Signup post route
 router.post("/signup", handleAsyncErr(async (req, res, next) => {
-    const { username, email, password, name } = req.body;
+    const { username, email, password, name, about, niche, gender, date_of_birth, socials } = req.body;
     try {
         // Check if user already exists
         const existingUser = await User.findOne({
@@ -28,6 +28,12 @@ router.post("/signup", handleAsyncErr(async (req, res, next) => {
             email,
             name,
             password: hashedPassword,
+            about,
+            niche,
+            date_of_birth,
+            socials,
+            gender
+
         });
 
         // Save the user to the database

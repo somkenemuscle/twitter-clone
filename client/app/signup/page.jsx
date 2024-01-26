@@ -21,7 +21,12 @@ function signUp() {
         name: '',
         username: '',
         email: '',
-        password: ''
+        password: '',
+        about: '',
+        niche: '',
+        gender: '',
+        dob: '',
+        socials: ''
 
     })
 
@@ -46,7 +51,12 @@ function signUp() {
                 username: user.username,
                 name: user.name,
                 email: user.email,
-                password: user.password
+                password: user.password,
+                niche: user.niche,
+                about: user.about,
+                gender: user.gender,
+                date_of_birth: user.dob,
+                socials: user.socials,
             });
             // Destructuring message and token from response.data
             const { message, token } = response.data;
@@ -120,6 +130,37 @@ function signUp() {
                             <div className="invalid-feedback">
                                 Please provide a password
                             </div>
+                        </div>
+
+                        {/* profile setup */}
+                        <div className="col-lg-12 col-md-12">
+                            <textarea onChange={handleChange} type="text" value={user.about} className="tweet-input form-control" placeholder="Describe your bio" name='about' />
+                        </div>
+
+                        <div className="col-lg-12 col-md-12">
+                            <select className="tweet-input form-control" defaultValue={'Select'} name="niche">
+                                <option value="Select" disabled >Choose Niche ....</option>
+                                <option value="Artist/Writer">Writer/Artist</option>
+                                <option value="Rapper">Rapper</option>
+                                <option value="Content Creator">Content Creator</option>
+                            </select>
+                        </div>
+
+                        <div className="col-lg-12 col-md-12">
+                            <select className="tweet-input form-control" defaultValue={'Select'} name="gender">
+                                <option value="Select" disabled >Choose Gender...</option>
+                                <option value=" Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Rather not say">Rather not say</option>
+                            </select>
+                        </div>
+
+                        <div className="col-lg-12 col-md-12">
+                            <input onChange={handleChange} type="text" value={user.socials} className="tweet-input form-control" placeholder="any socials" name='socials' />
+                        </div>
+
+                        <div className="col-lg-12 col-md-12">
+                            <input onChange={handleChange} type="date" value={user.dob} className="tweet-input form-control" placeholder="Birth year" name='date_of_birth' />
                         </div>
                     </div>
                     <button className='btn btn-sm btn-dark'>Sign Up</button>

@@ -7,7 +7,7 @@ function navbar() {
   //global state to check if user is logged in or not
   const { isLoggedIn, setIsLoggedIn } = useUserContext();
   const [loading, setLoading] = useState(true);
-  
+
   useEffect(() => {
     // Check if the token exists in localStorage
     const token = localStorage.getItem('token');
@@ -62,11 +62,19 @@ function navbar() {
 
             {/* Conditionally render Logout link */}
             {isLoggedIn ? (
-              <li className="nav-item">
-                <a onClick={logout} className="nav-link active" aria-current="page" href="/login">
-                  Logout
-                </a>
-              </li>
+              <>
+                <li className="nav-item">
+                  <a onClick={logout} className="nav-link active" aria-current="page" href="/login">
+                    Logout
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link active" aria-current="page" href="#">
+                    Profile
+                  </a>
+                </li>
+              </>
+
             ) : null}
           </ul>
         </div>

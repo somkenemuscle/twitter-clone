@@ -18,6 +18,25 @@ const userSchema = new Schema({
     email: {
         type: String,
         required: true
+    },
+    about:{
+        type:String
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now // Set the default value to the current date/time when a tweet is created
+    },
+    niche:{
+        type: String
+    },
+    gender:{
+        type: String
+    },
+    date_of_birth:{
+        type: String
+    },
+    socials:{
+        type: String
     }
 
 });
