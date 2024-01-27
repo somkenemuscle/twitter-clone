@@ -3,12 +3,14 @@ import { useState, useEffect } from "react";
 import axios from 'axios';
 import { useParams } from "next/navigation";
 import TweetContainer from "@/components/tweet/tweetContainer";
-import './post.css'
+import './post.css';
+import { useRouter } from 'next/navigation';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLink,
   faCalendarDays,
-  faLocationDot
+  faLocationDot,
+  faArrowLeft
 } from "@fortawesome/free-solid-svg-icons";
 
 function posts() {
@@ -18,7 +20,8 @@ function posts() {
   const [tweets, setTweets] = useState([]);
   //user state
   const [user, setUser] = useState();
-
+  //handling routing 
+  const router = useRouter();
 
   //fetching data-tweets from json api
   useEffect(() => {
@@ -47,6 +50,10 @@ function posts() {
     }
   }, [userid]); // Include userid as a dependency
 
+  //handle redirect back to tweets page 
+  function handlePostRedirect() {
+    router.push('/tweets')
+  }
 
   // change the date format to yy/mm/dd
   const formattedDate = user ? (
@@ -58,9 +65,12 @@ function posts() {
 
   return (
     <div className="post-container">
+      <div className="backbtn">
+        <span onClick={handlePostRedirect} className="back-logo"><FontAwesomeIcon icon={faArrowLeft} style={{ fontSize: 15, color: "whitesmoke" }} />   </span>
+        <span  className="back-text">Posts</span>
+      </div>
       {user && (
         <div>
-          <p>POSTS</p>
           <p>{user.name}</p>
           <p>@{user.username}</p>
           <p>{user.about}</p>

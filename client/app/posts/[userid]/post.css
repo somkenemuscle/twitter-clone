@@ -2,6 +2,30 @@
     margin: 0 37%;
     color: white;
 }
+/* styling the id page of a particular tweet section */
+.backbtn {
+    padding: 3% 3%;
+    font-weight: bolder;
+    border: 1px solid rgb(42, 40, 40);
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 1%;
+}
+.back-text {
+    margin-left: 3%;
+    color: whitesmoke;
+    margin-bottom: 10px;
+    border-bottom: 2px solid lightsalmon;
+    padding-bottom: 2px;
+}
+
+.back-logo:hover {
+    background-color: rgb(42, 40, 40);
+    padding: 3% 3%;
+    border-radius: 50%;
+    transition: 0.2s;
+}
+
 
 /* MEDIA QUERIES */
 @media only screen and (max-width: 1450px) {
