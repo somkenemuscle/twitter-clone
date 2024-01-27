@@ -1,6 +1,6 @@
 'use client'
 import './signup.css'
-import Footer from '@/components/footers/fixed-footer'
+
 import axios from "axios";
 import { useState } from 'react'
 import { useRouter } from 'next/navigation';
@@ -167,8 +167,8 @@ function signUp() {
                     </div>
                     <button className='btn btn-sm btn-dark'>Sign Up</button>
                 </form>
-                <Footer />
             </div>
+
         </div>
     )
 }
