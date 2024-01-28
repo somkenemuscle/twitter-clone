@@ -8,6 +8,7 @@ import {
   faCircleCheck,
   faHeart,
   faHeartCircleMinus,
+  faCircle
 
 } from "@fortawesome/free-solid-svg-icons";
 import '../tweet/tweet-comment.css'
@@ -99,8 +100,10 @@ export default function tweetContainer(props) {
     <div className="tweet-card" >
       <div >
         <div>
-          <span> <FontAwesomeIcon icon={faHeartCircleMinus} style={{ fontSize: 15, color: "" }} />  </span>
-          <span onClick={() => gotoPage(props.author_id)} className="card-title">{props.name}</span> <FontAwesomeIcon icon={faCircleCheck} style={{ fontSize: 15, color: "#1DA1F2" }} /> <span className="subtitle">@{props.username}. {formattedDate}</span>
+          <span> <FontAwesomeIcon icon={faCircle} style={{ fontSize: 30, color: "orange" }} />  </span>
+          <span className="name-line">
+            <span onClick={() => gotoPage(props.author_id)} className="card-title">{props.name}</span> <FontAwesomeIcon icon={faCircleCheck} style={{ fontSize: 15, color: "#1DA1F2" }} /> <span className="subtitle">@{props.username}. {formattedDate}</span>
+          </span>
           <span className="delete-btn dropdown">
             <span className="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
             </span>

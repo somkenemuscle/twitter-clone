@@ -64,10 +64,10 @@ function posts() {
   ) : "";
 
   return (
-    <div className="post-container">
-      <div className="backbtn">
-        <span onClick={handlePostRedirect} className="back-logo"><FontAwesomeIcon icon={faArrowLeft} style={{ fontSize: 15, color: "whitesmoke" }} />   </span>
-        <span  className="back-text">Posts</span>
+    <div className="postid-container">
+      <div className="backbtn-container">
+        <span onClick={handlePostRedirect} className="goback-logo"><FontAwesomeIcon icon={faArrowLeft} style={{ fontSize: 15, color: "whitesmoke" }} />   </span>
+        <span className="goback-text">Posts</span>
       </div>
       {user && (
         <div>
