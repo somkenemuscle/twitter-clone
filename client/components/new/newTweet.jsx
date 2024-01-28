@@ -62,7 +62,7 @@ function newTweet(props) {
             name='text'
           ></textarea>
           <div className="invalid-feedback">
-            {tweets.image ? 'Say something' : 'Please provide either text or an image'}
+            {tweets.image ? 'Say something' : 'Please provide either a text or an image'}
           </div>
           <input
             onChange={handleChange}
@@ -76,7 +76,7 @@ function newTweet(props) {
           <div className="invalid-feedback">
             {tweets.text ? 'Please provide an image url' : 'Please provide either text or an image'}
           </div>
-          <button className='btn btn-sm btn-dark'>Post tweet</button>
+          <button className='btn btn-sm btn-dark'>Post a tweet</button>
         </form>
       </div>
     </div>
