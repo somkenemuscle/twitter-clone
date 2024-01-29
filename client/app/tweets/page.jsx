@@ -63,16 +63,21 @@ export default function Tweets() {
     }
   }
 
-
+  //set tweet context to false so it dissappears
+  const closeAlert = () => {
+    setTweetMessage(false);
+  };
   return (
     <div className="main-tweet-container">
-
       {/* let user know what has been added => flash message  */}
-      {tweetMessage ? (
-        <div className="alert alert-dark alert-dismissible fade show" role="alert">
-          <strong> {tweetMessage}</strong>
+      {!!tweetMessage && (
+        <div className="custom-alert alert alert-dark alert-dismissible fade show" role="alert">
+          <strong>{tweetMessage}</strong>
+          <button type="button" className="close" onClick={closeAlert}>
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-      ) : null}
+      )}
 
       {/* render create tweet form if user is logged in or not */}
       {isLoggedIn ? (
