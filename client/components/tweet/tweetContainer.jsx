@@ -100,7 +100,7 @@ export default function tweetContainer(props) {
     <div className="tweet-card" >
       <div >
         <div>
-          <span> <FontAwesomeIcon icon={faCircle} style={{ fontSize: 30, color: "orange" }} />  </span>
+          <span> <FontAwesomeIcon icon={faCircle} style={{ fontSize: 30, color: "lightpink" }} />  </span>
           <span className="name-line">
             <span onClick={() => gotoPage(props.author_id)} className="card-title">{props.name}</span> <FontAwesomeIcon icon={faCircleCheck} style={{ fontSize: 15, color: "#1DA1F2" }} /> <span className="subtitle">@{props.username}. {formattedDate}</span>
           </span>
