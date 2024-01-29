@@ -10,7 +10,7 @@ function generateToken(user) {
   };
 
   const options = {
-    expiresIn: '1h', // Set token expiration time
+    expiresIn: '24h', // Set token expiration time
   };
 
   return jwt.sign(payload, secretKey, options);
