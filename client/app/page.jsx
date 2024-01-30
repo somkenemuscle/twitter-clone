@@ -36,12 +36,12 @@ export default function Home() {
         <div className="container text-center">
           <div className="row">
             <div className="col-xl-4 col-md-6">
-              <p><FontAwesomeIcon icon={faCheckCircle} style={{ fontSize: 60, color: "#0275d8" }} /></p>
-              <h3 className='features-header'>Easy to use.</h3>
+              <p><FontAwesomeIcon icon={faCheckCircle} style={{ fontSize: 60, color: "white" }} /></p>
+              <h3 className='features-header'>Easy to use now</h3>
               <p className='features-p'>So easy to use, even your dog could do it.</p>
             </div>
             <div className="col-xl-4 col-md-6">
-              <p> <FontAwesomeIcon icon={faBullseye} style={{ fontSize: 60, color: "orange" }} /></p>
+              <p> <FontAwesomeIcon icon={faBullseye} style={{ fontSize: 60, color: "orangered" }} /></p>
               <h3 className='features-header'>Anonymous tweets</h3>
               <p className='features-p'>All tweets are published Anonymously on the site.</p>
             </div>

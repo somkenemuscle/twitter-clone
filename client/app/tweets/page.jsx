@@ -67,6 +67,8 @@ export default function Tweets() {
   const closeAlert = () => {
     setTweetMessage(false);
   };
+
+
   return (
     <div className="main-tweet-container">
       {/* let user know what has been added => flash message  */}

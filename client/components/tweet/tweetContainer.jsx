@@ -8,9 +8,8 @@ import {
   faCircleCheck,
   faHeart,
   faCircle
-
 } from "@fortawesome/free-solid-svg-icons";
-import '../tweet/tweet-comment.css'
+import '../tweet/tweet-comment.css';
 import { useState, useEffect } from "react";
 
 export default function tweetContainer(props) {
@@ -107,7 +106,7 @@ export default function tweetContainer(props) {
             <span className="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
             </span>
             <ul className="dropdown-menu dropdown-menu-dark">
-              
+
               {/* Render delete button only if user is logged in and currentUserId matches authorId */}
               {isLoggedIn && currentUserId === props.author_id && (
                 <li><a onClick={() => handleDelete(props.id, props.author_id)} className="dropdown-item" href="/tweets">Delete</a></li>
