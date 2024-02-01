@@ -75,7 +75,7 @@ export default function commentSection(props) {
       </div>
       <div className="engagement-container ">
         <span className="like-tweet engagement-count"><FontAwesomeIcon icon={faHeart} style={{ fontSize: 16, color: "orangered" }} /></span>
-        <span className="like-count">25k Likes</span>
+        <span className="like-count">10k Likes</span>
       </div>
     </div>
   )
