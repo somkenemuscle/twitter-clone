@@ -36,7 +36,7 @@ function navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-black">
       <div className="container">
-        <a className="navbar-brand" href="/">  <FontAwesomeIcon icon={faHamburger} style={{ fontSize: 18, color: "white" }} />  Ret-weet</a>
+        <a className="navbar-brand" href="/">  <FontAwesomeIcon icon={faHamburger} style={{ fontSize: 18, color: "white" }} />  Retweet</a>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -52,10 +52,10 @@ function navbar() {
             {isLoggedIn ? null : (
               <>
                 <li className="nav-item">
-                  <a className="nav-link active" aria-current="page" href="/login">Log-in</a>
+                  <a className="nav-link active" aria-current="page" href="/login">Login</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link active" aria-current="page" href="/signup">Sign-up</a>
+                  <a className="nav-link active" aria-current="page" href="/signup">Signup</a>
                 </li>
               </>
             )}
