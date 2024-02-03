@@ -133,8 +133,6 @@ function signUp() {
                         </div>
 
                         {/* profile setup */}
-
-                        <p style={{ textAlign: "center", color: "white" }}>Set up your profile !!</p>
                         <div className="col-lg-12 col-md-12">
                             <textarea onChange={handleChange} type="text" value={user.about} className="tweet-input form-control" placeholder="Describe your bio" name='about' />
                         </div>
@@ -165,7 +163,7 @@ function signUp() {
                             <input onChange={handleChange} type="date" value={user.date_of_birth} className="tweet-input form-control" placeholder="Birth year" name='date_of_birth' />
                         </div>
                     </div>
-                    <button className='btn btn-sm btn-dark'>Sign Up</button>
+                    <button className='btn btn-sm btn-dark'>Create Profile</button>
                 </form>
             </div>
 

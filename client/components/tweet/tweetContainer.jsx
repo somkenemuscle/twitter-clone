@@ -98,22 +98,24 @@ export default function tweetContainer(props) {
     <div className="tweet-card">
       <div >
         <div>
-          <span> <FontAwesomeIcon icon={faCircle} style={{ fontSize: 30, color: "orange" }} />  </span>
+          <span> <FontAwesomeIcon icon={faCircle} style={{ fontSize: 30, color: "yellow" }} />  </span>
           <span className="name-line">
             <span onClick={() => gotoPage(props.author_id)} className="card-title">{props.name}</span> <FontAwesomeIcon icon={faCircleCheck} style={{ fontSize: 15, color: "#1DA1F2" }} /> <span className="subtitle">@{props.username}. {formattedDate}</span>
           </span>
-          <span className="delete-btn dropdown">
-            <span className="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            </span>
-            <ul className="dropdown-menu dropdown-menu-dark">
 
-              {/* Render delete button only if user is logged in and currentUserId matches authorId */}
-              {isLoggedIn && currentUserId === props.author_id && (
+
+          {/* Render delete button only if user is logged in and currentUserId matches authorId */}
+          {isLoggedIn && currentUserId === props.author_id && (
+            <span className="delete-btn dropdown">
+              <span className="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              </span>
+              <ul className="dropdown-menu dropdown-menu-dark">
                 <li><a onClick={() => handleDelete(props.id, props.author_id)} className="dropdown-item" href="/tweets">Delete</a></li>
-              )}
-              <li><a onClick={() => handleRedirect(props.id)} className="dropdown-item">View</a></li>
-            </ul>
-          </span>
+              </ul>
+            </span>
+          )}
+
+
         </div>
 
         <pre onClick={() => handleRedirect(props.id)} className="card-text">
