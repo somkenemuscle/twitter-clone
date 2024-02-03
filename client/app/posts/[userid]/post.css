@@ -26,7 +26,9 @@
     border-radius: 50%;
     transition: 0.2s;
 }
-
+.profile-container{
+    padding: 1% 2%;
+}
 
 /* MEDIA QUERIES */
 @media only screen and (max-width: 1450px) {
