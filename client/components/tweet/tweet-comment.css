@@ -5,6 +5,8 @@
     padding: 4% 2%;
     color: whitesmoke;
     font-weight: lighter;
+    font-family: 'Questrial', sans-serif;
+
 }
 
 .tweet-card:hover {
@@ -38,9 +40,8 @@
 .card-text {
     line-height: 1.4;
     font-size: 15px;
-    font-family:sans-serif;
+    font-family: 'Questrial', sans-serif;
     max-width: 100%;
-   
     overflow-wrap: break-word;
     white-space: pre-wrap;
 }
