@@ -75,12 +75,12 @@ function posts() {
   return (
     <div className="postid-container">
       {user && (<>
-      
+
         <div className="backbtn-container">
           <span onClick={handlePostRedirect} className="goback-logo"><FontAwesomeIcon icon={faArrowLeft} style={{ fontSize: 15, color: "whitesmoke" }} />   </span>
           <span className="goback-text">{user.name} <FontAwesomeIcon icon={faCheckCircle} style={{ fontSize: 15, color: "#1DA1F2" }} /></span>
         </div>
-      
+
         {/* profile container setup */}
         <div className="profile-container">
           <p>{user.name}</p>

@@ -16,7 +16,7 @@
 .goback-text {
     margin-left: 3%;
     color: whitesmoke;
-    border-bottom: 2px solid #1DA1F2;
+    border-bottom: 3px solid #1DA1F2;
     padding-bottom: 7px;
 }
 
@@ -26,8 +26,12 @@
     border-radius: 50%;
     transition: 0.2s;
 }
-.profile-container{
-    padding: 1% 2%;
+
+.profile-container {
+    border: 1px solid rgb(42, 40, 40);
+    padding: 2% 2%;
+    border-radius: 10px;
+    margin-bottom: 1%;
 }
 
 /* MEDIA QUERIES */
