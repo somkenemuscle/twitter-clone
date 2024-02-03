@@ -38,9 +38,9 @@
 .card-text {
     line-height: 1.4;
     font-size: 15px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family:sans-serif;
     max-width: 100%;
-    font-weight: 200;
+   
     overflow-wrap: break-word;
     white-space: pre-wrap;
 }
