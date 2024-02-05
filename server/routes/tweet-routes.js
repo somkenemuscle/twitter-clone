@@ -5,9 +5,9 @@ const handleAsyncErr = require('../utils/catchAsync');
 const isLoggedin = require('../utils/isLoggedin');
 const Comment = require('../models/comment');
 const multer = require('multer');
-const { storage } = require('../cloudinary')
+const { storage } = require('../cloudinary');
 const upload = multer({ storage });
-
+const {cloudinary} = require('../cloudinary');
 // GET all tweets
 router.get("/", async (req, res, next) => {
     // Fetch tweets and sort by createdAt field in descending order (newest first)
@@ -41,9 +41,7 @@ router.post("/", isLoggedin, upload.single('image'), handleAsyncErr(async (req, 
         createdAt: new Date() // Assign the creation date to the createdAt field
     });
     await newTweet.save(); // Save the changes to the database
-    console.log(newTweet);
     res.json({ newTweet });
-
 }));
 
 // GET a specific tweet by ID
@@ -62,7 +60,9 @@ router.delete("/:id", isLoggedin, handleAsyncErr(async (req, res, next) => {
     if (!req.user._id.equals(tweet.author._id)) {
         return res.status(403).json({ message: "Unauthorized: You don't have permission to delete this tweet" });
     }
+    let filename = tweet.image.filename;
     await Tweet.findByIdAndDelete(req.params.id);
+    await cloudinary.uploader.destroy(filename)
     return res.status(200).json({ message: "Tweet deleted successfully" });
 }));
 

@@ -73,7 +73,7 @@ function newTweet(props) {
             <input type="file" ref={fileInputRef} name="image" onChange={handleChange} required={!tweets.text} />
           </div>
           <div className="invalid-feedback">
-            {tweets.text ? 'Please provide either text or an image' : 'Please provide an image'}
+            {tweets.text ? 'Please provide either text or an image' : 'Please provide either text or an image'}
           </div>
           <button className='btn btn-sm btn-dark'>Post tweet</button>
         </form>
