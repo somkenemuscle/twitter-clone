@@ -7,7 +7,7 @@ const Comment = require('../models/comment');
 const multer = require('multer');
 const { storage } = require('../cloudinary');
 const upload = multer({ storage });
-const {cloudinary} = require('../cloudinary');
+const { cloudinary } = require('../cloudinary');
 // GET all tweets
 router.get("/", async (req, res, next) => {
     // Fetch tweets and sort by createdAt field in descending order (newest first)

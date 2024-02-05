@@ -20,23 +20,28 @@ const userSchema = new Schema({
         required: true
     },
     about: {
-        type: String
+        type: String,
+        required: true
     },
     createdAt: {
         type: Date,
         default: Date.now // Set the default value to the current date/time when a tweet is created
     },
     niche: {
-        type: String
+        type: String,
+        required: true
     },
     gender: {
-        type: String
+        type: String,
+        required: true
     },
     date_of_birth: {
-        type: String
+        type: String,
+        required: true
     },
     socials: {
-        type: String
+        type: String,
+        required: true
     }
 
 });
