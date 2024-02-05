@@ -107,7 +107,7 @@ function posts() {
             name={newtweet.author.name}
             username={newtweet.author.username}
             text={newtweet.text}
-            url={newtweet.image}
+            url={newtweet.image.url}
             author_id={newtweet.author._id}
             time={newtweet.createdAt}
           />

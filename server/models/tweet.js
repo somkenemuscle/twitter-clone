@@ -1,30 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const Joi = require('joi');
 const User = require('./user');
 const Comment = require('./comment');
-
-
-// Joi schema for image url validation
-const imageSchema = Joi.string().uri({
-    scheme: [
-        'http',
-        'https'
-    ]
-}).required();
-
-// Custom validator function using Joi
-const imageValidator = (value) => {
-    if (!value) {
-        // Allow empty values
-        return true;
-    }
-    const { error } = imageSchema.validate(value);
-    if (error) {
-        throw new Error('Invalid image URL. Please provide a valid HTTP or HTTPS URL for the image.');
-    }
-    return true;
-};
 
 // Tweet Schema
 const tweetSchema = new Schema({
@@ -36,14 +13,15 @@ const tweetSchema = new Schema({
         }
     },
     image: {
-        type: String,
-        required: function () {
-            // 'this' refers to the document being validated
-            return !this.text;
+        url: {
+            type: String,
+            required: function () {
+                // 'this' refers to the document being validated
+                return !this.text;
+            }
         },
-        validate: {
-            validator: imageValidator
-        }
+        filename: String,
+
     },
     createdAt: {
         type: Date,

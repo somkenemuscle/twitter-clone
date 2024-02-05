@@ -1,12 +1,16 @@
 'use client'
 import './newTweet.css'
-import { useState } from 'react'
+import { useState } from 'react';
+import { useRef } from 'react';
 
 function newTweet(props) {
+  //useref to reset file input
+  const fileInputRef = useRef(null);
+
   //state for tweets
   const [tweets, setTweets] = useState({
     text: '',
-    image: ''
+    image: null
   });
 
   //form bootsrap validation state
@@ -14,13 +18,11 @@ function newTweet(props) {
 
   //handling input change and updating tweet state
   function handleChange(e) {
-    const { value, name } = e.target;
-    setTweets((prevTweet) => {
-      return {
-        ...prevTweet,
-        [name]: value
-      }
-    })
+    const { value, name, files } = e.target;
+    setTweets((prevTweets) => ({
+      ...prevTweets,
+      [name]: name === 'image' ? files[0] : value,
+    }));
   }
 
   //handling submit when form is filled with (Bootstrap form validation)
@@ -42,7 +44,9 @@ function newTweet(props) {
       // Attempt to add tweet to the database
       await props.addTweet(tweets);
       setValidated(false); // Reset validated state
-      setTweets({ text: '', image: '' }); // Reset the input fields after adding the tweet
+      setTweets({ text: '', image: null }); // Reset the input fields after adding the tweet
+      // Reset the file input value
+      fileInputRef.current.value = '';
     } catch (error) {
       console.error('Error adding tweet:', error);
     }
@@ -51,30 +55,25 @@ function newTweet(props) {
   return (
     <div>
       <div className='new-tweet-container'>
-        <form className={validated ? 'was-validated' : ''} noValidate onSubmit={handlesubmit}>
+        <form className={validated ? 'was-validated' : ''} noValidate onSubmit={handlesubmit} encType="multipart/form-data">
           <textarea
             onChange={handleChange}
             value={tweets.text}
-            required={!tweets.image} // Make text required only if image is not provided
+            // Make text required only if image is not provided
             className="tweet-input form-control"
             rows="3"
             placeholder='Say something'
             name='text'
+            required={!tweets.image}
           ></textarea>
           <div className="invalid-feedback">
             {tweets.image ? 'Say something' : 'Please provide either text or an image'}
           </div>
-          <input
-            onChange={handleChange}
-            type="text"
-            value={tweets.image}
-            className="tweet-input form-control"
-            placeholder="Image Url"
-            required={!tweets.text} // Make image required only if text is not provided
-            name='image'
-          />
+          <div>
+            <input type="file"  ref={fileInputRef} name="image" onChange={handleChange} required={!tweets.text} />
+          </div>
           <div className="invalid-feedback">
-            {tweets.text ? 'Please provide an image url' : 'Please provide either text or an image'}
+            {tweets.text ? 'Please provide an image' : 'Please provide either text or an image'}
           </div>
           <button className='btn btn-sm btn-dark'>Post tweet</button>
         </form>

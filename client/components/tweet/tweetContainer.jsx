@@ -62,10 +62,9 @@ export default function tweetContainer(props) {
       //check for authorization for deleting a post
       if (currentUserId === author_id) {
         // Make the DELETE request with the provided headers
-        const response = await axios.delete(`http://localhost:4000/api/tweets/${id}`, {
+        await axios.delete(`http://localhost:4000/api/tweets/${id}`, {
           headers: headers,
         });
-        router.push(`/tweets`);
       }
     } catch (error) {
       console.log(error)

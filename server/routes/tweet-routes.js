@@ -4,6 +4,9 @@ const router = express.Router();
 const handleAsyncErr = require('../utils/catchAsync');
 const isLoggedin = require('../utils/isLoggedin');
 const Comment = require('../models/comment');
+const multer = require('multer');
+const { storage } = require('../cloudinary')
+const upload = multer({ storage });
 
 // GET all tweets
 router.get("/", async (req, res, next) => {
@@ -22,13 +25,23 @@ router.get('/:userId/posts', handleAsyncErr(async (req, res) => {
 
 
 // POST a new tweet
-router.post("/", isLoggedin, handleAsyncErr(async (req, res, next) => {
+router.post("/", isLoggedin, upload.single('image'), handleAsyncErr(async (req, res, next) => {
+    let imageFile;
+    if (req.file) {
+        const { path, filename } = req.file;
+        imageFile = {
+            url: path,
+            filename: filename
+        }
+    }
     const newTweet = await Tweet.create({
-        ...req.body,
+        text: req.body.text,
+        image: imageFile ? imageFile : { url: null, filename: null },
         author: req.user._id,
         createdAt: new Date() // Assign the creation date to the createdAt field
     });
     await newTweet.save(); // Save the changes to the database
+    console.log(newTweet);
     res.json({ newTweet });
 
 }));

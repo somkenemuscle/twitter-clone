@@ -160,7 +160,7 @@ export default function TweetPage() {
         name={tweets.author.name}
         username={tweets.author.username}
         text={tweets.text}
-        url={tweets.image}
+        url={tweets.image.url}
         author_id={tweets.author._id}
         time={tweets.createdAt}
       />

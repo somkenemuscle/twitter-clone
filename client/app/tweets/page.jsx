@@ -45,19 +45,18 @@ export default function Tweets() {
       const token = localStorage.getItem('token');
       // Set the Authorization header with the JWT token
       const headers = {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json' // You can set other headers if needed
+        Authorization: `Bearer ${token}`
       };
-      const res = await axios.post("http://localhost:4000/api/tweets/", {
-        text: tweet.text,
-        image: tweet.image
-      }, { headers }); // Pass headers as a third argument to axios.post()
+      // Create FormData and append text and image (if present)
+      const formData = new FormData();
+      formData.append('text', tweet.text);
+      formData.append('image', tweet.image ? tweet.image : null);
+      await axios.post("http://localhost:4000/api/tweets/", formData, { headers }); // Pass headers as a third argument to axios.post()
       // Fetch updated tweets after successful addition
       const updatedTweetsResponse = await axios.get("http://localhost:4000/api/tweets");
       setTweets(updatedTweetsResponse.data); // Update local state with the updated tweets
       // Set flash message on successful tweet addition
       setTweetMessage('Tweet added');
-
     } catch (error) {
       console.log(error)
     }
@@ -96,12 +95,15 @@ export default function Tweets() {
             name={newtweet.author.name}
             username={newtweet.author.username}
             text={newtweet.text}
-            url={newtweet.image}
+            url={newtweet.image ? newtweet.image.url : null}
             author_id={newtweet.author._id}
             time={newtweet.createdAt}
           />
         ))}
       </div>
+
+
+
     </div>
 
   );
