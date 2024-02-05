@@ -75,7 +75,7 @@ function newTweet(props) {
           <div className="invalid-feedback">
             {tweets.text ? 'Please provide an image' : 'Please provide either text or an image'}
           </div>
-          <button className='btn btn-sm btn-dark'>Post tweet</button>
+          <button className='btn btn-sm btn-dark'>Post a tweet</button>
         </form>
       </div>
     </div>
