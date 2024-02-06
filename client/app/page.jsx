@@ -47,7 +47,7 @@ export default function Home() {
             </div>
             <div className="col-xl-4 col-md-12">
               <p> <FontAwesomeIcon icon={faHeart} style={{ fontSize: 60, color: "#d9534f" }} /></p>
-              <h3 className='features-header'>Guaranteed to work.</h3>
+              <h3 className='features-header'>Guaranty will work</h3>
               <p className='features-p'>Find the gists you've been looking at yeah</p>
             </div>
           </div>
@@ -66,14 +66,14 @@ export default function Home() {
             <div className="card h-100 home-card">
               <div className="card-body">
                 <h5 className="card-title home-card-title">Workspaces</h5>
-                <p className="card-text home-card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p className="card-text home-card-text">This is the long card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
               </div>
             </div>
           </div>
           <div className="col">
             <div className="card h-100 home-card">
               <div className="card-body">
-                <h5 className="card-title home-card-title">Durability</h5>
+                <h5 className="card-title home-card-title">Durable</h5>
                 <p className="card-text home-card-text">This is a short card card with supporting text below as a natural lead-in to additional content is durable for use and extension.</p>
               </div>
             </div>
@@ -81,7 +81,7 @@ export default function Home() {
           <div className="col">
             <div className="card h-100 home-card">
               <div className="card-body">
-                <h5 className="card-title home-card-title">Enhance</h5>
+                <h5 className="card-title home-card-title">Enhancement</h5>
                 <p className="card-text home-card-text">This is a longer card with supporting text below as a natural lead-in to additional content also improves UI/UX enchancements.</p>
               </div>
             </div>
