@@ -19,6 +19,13 @@
     float: right;
 }
 
+.profile-pic {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
 .card-title {
     font-weight: bolder;
 }
@@ -31,13 +38,15 @@
     font-weight: light;
     color: gray;
 }
-.name-line{
+
+.name-line {
     position: relative;
-    bottom: 5px;
+    bottom: 1px;
     left: 5px;
 }
 
 .card-text {
+    margin-top: 10px;
     line-height: 1.4;
     font-size: 15px;
     font-family: 'Questrial', sans-serif;

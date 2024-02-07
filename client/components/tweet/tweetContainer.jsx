@@ -3,11 +3,9 @@ import axios from "axios";
 import { useRouter } from 'next/navigation';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faRetweet,
   faComment,
   faCircleCheck,
   faHeart,
-  faCircle
 } from "@fortawesome/free-solid-svg-icons";
 import '../tweet/tweet-comment.css';
 import { useState, useEffect } from "react";
@@ -97,7 +95,18 @@ export default function tweetContainer(props) {
     <div className="tweet-card">
       <div >
         <div>
-          <span> <FontAwesomeIcon icon={faCircle} style={{ fontSize: 30, color: "yellow" }} />  </span>
+          <span>
+            {/* <FontAwesomeIcon icon={faCircle} style={{ fontSize: 30, color: "yellow" }} />    */}
+            <Image
+              className="profile-pic img-fluid tweet-img"
+              src='https://pbs.twimg.com/media/GFrlqskXMAEAq9n?format=jpg&name=medium'
+              width={35}
+              height={35}
+              quality={100}
+              alt="Tweet Image"
+              priority={true}
+            />
+          </span>
           <span className="name-line">
             <span onClick={() => gotoPage(props.author_id)} className="card-title">{props.name}</span> <FontAwesomeIcon icon={faCircleCheck} style={{ fontSize: 15, color: "#1DA1F2" }} /> <span className="subtitle">@{props.username}. {formattedDate}</span>
           </span>
@@ -116,6 +125,7 @@ export default function tweetContainer(props) {
 
 
         </div>
+
 
         <pre onClick={() => handleRedirect(props.id)} className="card-text">
           {showAll ? props.text : `${props.text.slice(0, maxLength)}${props.text.length > maxLength ? '...' : ''}`}

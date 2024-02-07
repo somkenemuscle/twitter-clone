@@ -34,7 +34,10 @@ const tweetSchema = new Schema({
     comments: [{
         type: Schema.Types.ObjectId,
         ref: 'Comment'
-    }]
+    }],
+    likes: {
+        type: Number
+    }
 });
 
 //delete all tweet and comments
