@@ -42,6 +42,12 @@ const userSchema = new Schema({
     socials: {
         type: String,
         required: true
+    },
+    profile_img: {
+        url: {
+            type: String,
+        },
+        filename: String,
     }
 
 });

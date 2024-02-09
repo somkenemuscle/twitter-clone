@@ -163,6 +163,7 @@ export default function TweetPage() {
         url={tweets.image.url}
         author_id={tweets.author._id}
         time={tweets.createdAt}
+        profile_img={tweets.author.profile_img.url}
       />
 
       {/* render create tweet form if user is logged in or not */}

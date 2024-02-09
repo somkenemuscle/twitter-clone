@@ -4,10 +4,13 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const generateToken = require('../passport-auth/auth');
 const handleAsyncErr = require('../utils/catchAsync');
+const multer = require('multer');
+const { storage } = require('../cloudinary');
+const upload = multer({ storage });
 
 
 // /Signup post route
-router.post("/signup", handleAsyncErr(async (req, res, next) => {
+router.post("/signup", upload.single('profile_img'), handleAsyncErr(async (req, res, next) => {
     const { username, email, password, name, about, niche, gender, date_of_birth, socials } = req.body;
     try {
         // Check if user already exists
@@ -21,6 +24,14 @@ router.post("/signup", handleAsyncErr(async (req, res, next) => {
 
         // Hash the password before storing in the database (hash and salt)
         const hashedPassword = await bcrypt.hash(password, 10);
+        let imageFile = null;
+        if (req.file) {
+            const { path, filename } = req.file;
+            imageFile = {
+                url: path,
+                filename: filename
+            }
+        }
 
         // Create a new user
         const newUser = new User({
@@ -32,7 +43,8 @@ router.post("/signup", handleAsyncErr(async (req, res, next) => {
             niche,
             date_of_birth,
             socials,
-            gender
+            gender,
+            profile_img: imageFile ? imageFile : { url: null, filename: null }
         });
 
         // Save the user to the database

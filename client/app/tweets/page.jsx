@@ -95,9 +95,10 @@ export default function Tweets() {
             name={newtweet.author.name}
             username={newtweet.author.username}
             text={newtweet.text}
-            url={newtweet.image ? newtweet.image.url : null}
+            url={newtweet.image.url}
             author_id={newtweet.author._id}
             time={newtweet.createdAt}
+            profile_img={newtweet.author.profile_img.url }
           />
         ))}
       </div>

@@ -26,7 +26,8 @@ function signUp() {
         niche: '',
         gender: '',
         date_of_birth: '',
-        socials: ''
+        socials: '',
+        profile_img: null
 
     })
 
@@ -35,29 +36,30 @@ function signUp() {
 
     //handling input change and updating user state
     function handleChange(e) {
-        const { value, name } = e.target;
-        setUser((prevUser) => {
-            return {
-                ...prevUser,
-                [name]: value
-            }
-        })
+        const { value, name, files } = e.target;
+        setUser((prevUser) => ({
+            ...prevUser,
+            [name]: name === 'profile_img' ? files[0] : value,
+        }));
     }
 
     //add new user to database function
     async function registerUser(user) {
         try {
-            const response = await axios.post("http://localhost:4000/api/tweets/signup", {
-                username: user.username,
-                name: user.name,
-                email: user.email,
-                password: user.password,
-                niche: user.niche,
-                about: user.about,
-                gender: user.gender,
-                date_of_birth: user.date_of_birth,
-                socials: user.socials
-            });
+            // Create FormData and append text and image (if present)
+            const signupData = new FormData();
+            signupData.append('username', user.username);
+            signupData.append('profile_img', user.profile_img ? user.profile_img : null);
+            signupData.append('name', user.name);
+            signupData.append('email', user.email);
+            signupData.append('password', user.password);
+            signupData.append('niche', user.niche);
+            signupData.append('about', user.about);
+            signupData.append('gender', user.gender);
+            signupData.append('date_of_birth', user.date_of_birth);
+            signupData.append('socials', user.socials);
+
+            const response = await axios.post("http://localhost:4000/api/tweets/signup", signupData);
             // Destructuring message and token from response.data
             const { message, token } = response.data;
             if (response.status === 201) {
@@ -102,7 +104,7 @@ function signUp() {
     return (
         <div>
             <div className='new-tweet-container'>
-                <form className={validated ? 'was-validated' : ''} noValidate onSubmit={handlesubmit}>
+                <form className={validated ? 'was-validated' : ''} noValidate onSubmit={handlesubmit} encType="multipart/form-data" >
                     <div className="row">
                         <div className="col-lg-6 col-md-12">
                             <input onChange={handleChange} type="text" value={user.username} className="tweet-input form-control" placeholder="Username" required name='username' />
@@ -133,6 +135,11 @@ function signUp() {
                         </div>
 
                         {/* profile setup */}
+                        <div className="col-lg-12 col-md-12" >
+                            profile pic
+                            <input type="file" name="profile_img" onChange={handleChange} />
+                        </div>
+
                         <div className="col-lg-12 col-md-12">
                             <textarea onChange={handleChange} type="text" value={user.about} className="tweet-input form-control" placeholder="Describe your bio" name='about' />
                         </div>

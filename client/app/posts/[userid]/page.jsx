@@ -110,6 +110,7 @@ function posts() {
             url={newtweet.image.url}
             author_id={newtweet.author._id}
             time={newtweet.createdAt}
+            profile_img={newtweet.author.profile_img.url}
           />
         ))
       ) : (
