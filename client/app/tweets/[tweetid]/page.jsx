@@ -85,7 +85,7 @@ export default function TweetPage() {
         console.error("Error fetching comments:", error);
         setComments(null); // Set comments state to null on error
       });
-  }, [tweetid]);// Include tweetid in the dependency array to re-fetch when it changes
+  }, [tweetid, comments]);// Include tweetid in the dependency array to re-fetch when it changes
 
 
   //add tweet to database function
@@ -192,6 +192,7 @@ export default function TweetPage() {
               id={newcomment._id}
               author_id={newcomment.author._id}
               deleteComment={deleteComment}
+              likes={newcomment.likes}
             />
           ))
         ) : null}

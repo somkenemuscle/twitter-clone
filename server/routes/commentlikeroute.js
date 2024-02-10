@@ -2,27 +2,28 @@ const express = require('express');
 const router = express.Router();
 const handleAsyncErr = require('../utils/catchAsync');
 const isLoggedin = require('../utils/isLoggedin');
-const { Tweet } = require('../models/tweet');
+const Comment = require('../models/comment');
+
 
 // add like to a tweet
-router.post("/:tweetId/:userId", isLoggedin, handleAsyncErr(async (req, res, next) => {
-    const { tweetId, userId } = req.params
+router.post("/:commentId/:userId", isLoggedin, handleAsyncErr(async (req, res, next) => {
+    const { commentId, userId } = req.params;
     // Check if the user has already liked the tweet
-    const tweet = await Tweet.findById(tweetId);
-    if (!tweet) {
-        console.log('Tweet not found');
+    const comment = await Comment.findById(commentId);
+    if (!comment) {
+        console.log('comment not found');
         return;
     }
 
-    if (tweet.likedBy.includes(userId)) {
+    if (comment.likedBy.includes(userId)) {
         // User has already liked the tweet, so unlike it
-        await Tweet.findByIdAndUpdate(tweetId, {
+        await Comment.findByIdAndUpdate(commentId, {
             $inc: { likes: -1 },
             $pull: { likedBy: userId }
         });
     } else {
         // User hasn't liked the tweet, so like it
-        await Tweet.findByIdAndUpdate(tweetId, {
+        await Comment.findByIdAndUpdate(commentId, {
             $inc: { likes: 1 },
             $push: { likedBy: userId }
         });
@@ -30,6 +31,3 @@ router.post("/:tweetId/:userId", isLoggedin, handleAsyncErr(async (req, res, nex
 }));
 
 module.exports = router;
-
-
-

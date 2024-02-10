@@ -78,7 +78,7 @@ export default function tweetContainer(props) {
         // Set the Authorization header with the JWT token
         const headers = createAuthHeaders(token);
         await axios.post(`http://localhost:4000/api/like/${id}/${currentUser}`, {}, { headers })
-        props.likes += 1;
+        
 
       } else {
         console.log('you need to be logged in to like this tweet')
