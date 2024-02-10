@@ -72,7 +72,7 @@ export default function TweetPage() {
         console.error("Error fetching tweets:", error);
         setTweets(null); // Set tweets state to null on error
       });
-  }, [tweetid]); // Include tweetid in the dependency array to re-fetch when it changes
+  }, [tweetid,tweets]); // Include tweetid in the dependency array to re-fetch when it changes
 
 
   // Fetch comments based on the 'tweetid' and display it
@@ -164,6 +164,7 @@ export default function TweetPage() {
         author_id={tweets.author._id}
         time={tweets.createdAt}
         profile_img={tweets.author.profile_img.url}
+        likes={tweets.likes}
       />
 
       {/* render create tweet form if user is logged in or not */}

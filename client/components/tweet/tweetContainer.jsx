@@ -70,13 +70,16 @@ export default function tweetContainer(props) {
     }
   }
 
-  //like function
+
+  //like functionality 
   async function handleLike(id, currentUser) {
     try {
       if (isLoggedIn) {
         // Set the Authorization header with the JWT token
         const headers = createAuthHeaders(token);
         await axios.post(`http://localhost:4000/api/like/${id}/${currentUser}`, {}, { headers })
+        props.likes += 1;
+
       } else {
         console.log('you need to be logged in to like this tweet')
       }
@@ -142,10 +145,7 @@ export default function tweetContainer(props) {
               </ul>
             </span>
           )}
-
-
         </div>
-
 
         <pre onClick={() => handleRedirect(props.id)} className="card-text">
           {showAll ? props.text : `${props.text.slice(0, maxLength)}${props.text.length > maxLength ? '...' : ''}`}
@@ -173,7 +173,7 @@ export default function tweetContainer(props) {
       <div className="engagement-container ">
         <span onClick={() => handleLike(props.id, currentUserId)} className="like-tweet engagement-count"><FontAwesomeIcon icon={faHeart} style={{ fontSize: 16, color: "orangered" }} /> </span>
         <span onClick={() => handleRedirect(props.id)} className="comment-tweet engagement-count"><FontAwesomeIcon icon={faComment} style={{ fontSize: 16 }} /> </span>
-        <p className="like-count">620,602k likes</p>
+        <p className="like-count">{props.likes} likes</p>
       </div>
     </div>
 

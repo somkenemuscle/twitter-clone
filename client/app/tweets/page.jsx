@@ -36,7 +36,7 @@ export default function Tweets() {
       .catch((error) => {
         console.error("Error fetching tweets:", error);
       });
-  }, []);
+  }, [tweets]);
 
 
   //add tweet to database function
@@ -98,13 +98,11 @@ export default function Tweets() {
             url={newtweet.image.url}
             author_id={newtweet.author._id}
             time={newtweet.createdAt}
-            profile_img={newtweet.author.profile_img.url }
+            profile_img={newtweet.author.profile_img.url}
+            likes={newtweet.likes}
           />
         ))}
       </div>
-
-
-
     </div>
 
   );

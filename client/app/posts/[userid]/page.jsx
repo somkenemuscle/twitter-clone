@@ -36,7 +36,7 @@ function posts() {
           console.error("Error fetching tweets:", error);
         });
     }
-  }, [userid]); // Include userid as a dependen
+  }, [userid,tweets]); // Include userid as a dependen
 
 
   //get infromation about a particular user from the json api
@@ -111,6 +111,8 @@ function posts() {
             author_id={newtweet.author._id}
             time={newtweet.createdAt}
             profile_img={newtweet.author.profile_img.url}
+            likes={newtweet.likes}
+
           />
         ))
       ) : (
