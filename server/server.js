@@ -8,6 +8,7 @@ const tweetRoutes = require('./routes/tweet-routes');
 const userRoutes = require('./routes/users');
 const getUserRoutes = require('./routes/getUser');
 const commentRoutes = require('./routes/comment');
+const likeRoute = require('./routes/likeroute')
 const passport = require('./passport-auth/passport');
 
 // Connect to MongoDB
@@ -38,6 +39,9 @@ app.use('/api/user', getUserRoutes); // Mount user-related routes under /api/use
 app.use('/api/tweets', tweetRoutes, userRoutes);
 //Routes for comments
 app.use('/api/comments', commentRoutes);
+//Route for likes
+app.use('/api/like', likeRoute);
+
 
 //Listen for port
 const PORT = process.env.PORT || 4000;

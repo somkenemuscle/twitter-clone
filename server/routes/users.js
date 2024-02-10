@@ -19,7 +19,7 @@ router.post("/signup", upload.single('profile_img'), handleAsyncErr(async (req, 
         });
         if (existingUser) {
             console.log("username or email already exist")
-            return res.status(400).json({ message: 'username or email already exists' });
+            return res.status(400).json({ message: 'Username or Email already exists' });
         }
 
         // Hash the password before storing in the database (hash and salt)

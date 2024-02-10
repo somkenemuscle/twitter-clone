@@ -6,6 +6,7 @@ import {
   faComment,
   faCircleCheck,
   faHeart,
+  faCircle
 } from "@fortawesome/free-solid-svg-icons";
 import '../tweet/tweet-comment.css';
 import { useState, useEffect } from "react";
@@ -69,6 +70,23 @@ export default function tweetContainer(props) {
     }
   }
 
+  //like function
+  async function handleLike(id, currentUser) {
+    try {
+      if (isLoggedIn) {
+        // Set the Authorization header with the JWT token
+        const headers = createAuthHeaders(token);
+        await axios.post(`http://localhost:4000/api/like/${id}/${currentUser}`, {
+          headers: headers,
+        })
+      } else {
+        console.log('you need to be logged in to like this tweet');
+      }
+    } catch (error) {
+      console.log("error tweets", error)
+    }
+  }
+
   //for token headers
   function createAuthHeaders(token) {
     return {
@@ -90,6 +108,7 @@ export default function tweetContainer(props) {
   //change the date format to yy/mm/dd
   const options = { month: 'short', day: '2-digit', year: 'numeric' };
   const formattedDate = new Date(props.time).toLocaleDateString('en-US', options);
+
 
   return (
     <div className="tweet-card">
@@ -154,7 +173,7 @@ export default function tweetContainer(props) {
         ) : null}
       </div>
       <div className="engagement-container ">
-        <span className="like-tweet engagement-count"><FontAwesomeIcon icon={faHeart} style={{ fontSize: 16, color: "orangered" }} /> </span>
+        <span onClick={() => handleLike(props.id, currentUserId)} className="like-tweet engagement-count"><FontAwesomeIcon icon={faHeart} style={{ fontSize: 16, color: "orangered" }} /> </span>
         <span onClick={() => handleRedirect(props.id)} className="comment-tweet engagement-count"><FontAwesomeIcon icon={faComment} style={{ fontSize: 16 }} /> </span>
         <p className="like-count">620,602k likes</p>
       </div>

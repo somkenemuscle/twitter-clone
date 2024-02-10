@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const User = require('./user');
 const Comment = require('./comment');
 
 // Tweet Schema
@@ -21,7 +20,6 @@ const tweetSchema = new Schema({
             }
         },
         filename: String,
-
     },
     createdAt: {
         type: Date,
@@ -34,7 +32,17 @@ const tweetSchema = new Schema({
     comments: [{
         type: Schema.Types.ObjectId,
         ref: 'Comment'
-    }]
+    }],
+    likes: {
+        type: Number,
+        default: 0
+    }, // Number of likes
+    likedBy: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        }
+    ] // Array of user IDs who liked the tweet
 });
 
 //delete all tweet and comments
@@ -47,7 +55,6 @@ tweetSchema.post('findOneAndDelete', async function (doc) {
         });
     }
 });
-
 
 // Create models for Tweet schema
 const Tweet = mongoose.model('Tweet', tweetSchema);

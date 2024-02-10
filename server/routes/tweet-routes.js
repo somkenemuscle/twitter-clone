@@ -12,7 +12,7 @@ const { cloudinary } = require('../cloudinary');
 // GET all tweets
 router.get("/", async (req, res, next) => {
     // Fetch tweets and sort by createdAt field in descending order (newest first)
-    const tweets = await Tweet.find().sort({ createdAt: -1 }).populate('author');
+    const tweets = await Tweet.find().sort({ createdAt: -1 }).populate('author').populate('likes');
     res.json(tweets);
 });
 
@@ -20,7 +20,7 @@ router.get("/", async (req, res, next) => {
 router.get('/:userId/posts', handleAsyncErr(async (req, res) => {
     const userId = req.params.userId;
     // Find all tweets by a particular user
-    const tweets = await Tweet.find({ author: userId }).sort({ createdAt: -1 }).populate('author');
+    const tweets = await Tweet.find({ author: userId }).sort({ createdAt: -1 }).populate('author').populate('likes');
     res.json(tweets);
 }));
 
@@ -47,7 +47,7 @@ router.post("/", isLoggedin, upload.single('image'), handleAsyncErr(async (req, 
 
 // GET a specific tweet by ID
 router.get("/:id", handleAsyncErr(async (req, res, next) => {
-    const foundTweet = await Tweet.findById(req.params.id).populate('author');
+    const foundTweet = await Tweet.findById(req.params.id).populate('author').populate('likes');
     res.json(foundTweet);
 }));
 
