@@ -90,7 +90,7 @@ router.use((err, req, res, next) => {
     res.status(status).send(err);
     console.log(err)
 })
-module.exports = router;
+module.exports = router; 
 
 
 

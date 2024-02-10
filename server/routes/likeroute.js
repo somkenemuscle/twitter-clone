@@ -2,11 +2,10 @@ const express = require('express');
 const router = express.Router();
 const handleAsyncErr = require('../utils/catchAsync');
 const isLoggedin = require('../utils/isLoggedin');
-const User = require('../models/user');
 const { Tweet } = require('../models/tweet');
 
 // GET the current user's information
-router.post("/:tweetId/:userId", handleAsyncErr(async (req, res, next) => {
+router.post("/:tweetId/:userId", isLoggedin, handleAsyncErr(async (req, res, next) => {
     const { tweetId, userId } = req.params
     try {
         // Check if the user has already liked the tweet

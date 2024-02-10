@@ -76,11 +76,9 @@ export default function tweetContainer(props) {
       if (isLoggedIn) {
         // Set the Authorization header with the JWT token
         const headers = createAuthHeaders(token);
-        await axios.post(`http://localhost:4000/api/like/${id}/${currentUser}`, {
-          headers: headers,
-        })
+        await axios.post(`http://localhost:4000/api/like/${id}/${currentUser}`, {}, { headers })
       } else {
-        console.log('you need to be logged in to like this tweet');
+        console.log('you need to be logged in to like this tweet')
       }
     } catch (error) {
       console.log("error tweets", error)
