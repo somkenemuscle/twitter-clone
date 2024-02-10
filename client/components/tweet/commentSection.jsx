@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircle,
@@ -15,6 +16,8 @@ export default function commentSection(props) {
   const [currentUserId, setCurrentUserId] = useState(null);
   //get token from local storage
   const token = localStorage.getItem('token');
+  //handling routing
+  const router = useRouter();
 
   // Check if user is logged in
   useEffect(() => {
@@ -47,6 +50,10 @@ export default function commentSection(props) {
       'Content-Type': 'application/json'
     };
   }
+  //handling redirect to a specific id ( id passed to the function from props.id)
+  function gotoPage() {
+    router.push(`/posts/${props.author_id}`);
+  }
   //change the date format to yy/mm/dd
   const options = { month: 'short', day: '2-digit', year: 'numeric' };
   const formattedDate = new Date(props.time).toLocaleDateString('en-US', options);
@@ -56,7 +63,7 @@ export default function commentSection(props) {
       <div >
         <div>
           <span> <FontAwesomeIcon icon={faCircle} style={{ fontSize: 15, color: "grey" }} />  </span>
-          <span className="card-title">{props.name}</span> <FontAwesomeIcon icon={faCircleCheck} style={{ fontSize: 15, color: "#1DA1F2" }} /> <span className="subtitle">@{props.username}.  {formattedDate}</span>
+          <span onClick={() => { gotoPage() }} className="card-title">{props.name}</span> <FontAwesomeIcon icon={faCircleCheck} style={{ fontSize: 15, color: "#1DA1F2" }} /> <span className="subtitle">@{props.username}.  {formattedDate}</span>
 
 
           {/* Render delete button only if user is logged in and currentUserId matches authorId */}

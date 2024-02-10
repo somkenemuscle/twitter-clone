@@ -72,7 +72,7 @@ export default function TweetPage() {
         console.error("Error fetching tweets:", error);
         setTweets(null); // Set tweets state to null on error
       });
-  }, [tweetid,tweets]); // Include tweetid in the dependency array to re-fetch when it changes
+  }, [tweetid, tweets]); // Include tweetid in the dependency array to re-fetch when it changes
 
 
   // Fetch comments based on the 'tweetid' and display it
