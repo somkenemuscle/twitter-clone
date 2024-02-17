@@ -44,9 +44,7 @@ export default function Tweets() {
     try {
       const token = localStorage.getItem('token');
       // Set the Authorization header with the JWT token
-      const headers = {
-        Authorization: `Bearer ${token}`
-      };
+      const headers = createAuthHeaders(token);
       // Create FormData and append text and image (if present)
       const formData = new FormData();
       formData.append('text', tweet.text);
@@ -67,6 +65,7 @@ export default function Tweets() {
     setTweetMessage(false);
   };
 
+  //handle like functionality
   const handleLike = async (tweetId, userId) => {
     try {
       const token = localStorage.getItem('token');
@@ -124,7 +123,6 @@ export default function Tweets() {
             profile_img={newtweet.author.profile_img.url}
             likes={newtweet.likes}
             handleLike={handleLike}
-          // likedBy={newtweet.likedBy}
           />
         ))}
       </div>

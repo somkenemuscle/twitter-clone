@@ -20,7 +20,6 @@ router.post("/:tweetId/:userId", isLoggedin, handleAsyncErr(async (req, res, nex
             $pull: { likedBy: userId }
         });
         const updatedTweet = await Tweet.findById(tweetId).populate('author');
-        console.log(updatedTweet)
         return res.status(200).json({ message: "Tweet unliked successfully", likes: updatedTweet });
     } else {
         // User hasn't liked the tweet, so like it
@@ -29,7 +28,6 @@ router.post("/:tweetId/:userId", isLoggedin, handleAsyncErr(async (req, res, nex
             $push: { likedBy: userId }
         });
         const updatedTweet = await Tweet.findById(tweetId).populate('author');
-        console.log(updatedTweet)
         return res.status(200).json({ message: "Tweet liked successfully", likes: updatedTweet });
     }
 }));
