@@ -60,8 +60,6 @@ export default function TweetPage() {
   }, [token]);
 
 
-
-
   // Fetch tweet data based on the 'tweetid' and display it
   useEffect(() => {
     axios.get(`http://localhost:4000/api/tweets/${tweetid}`)
@@ -72,7 +70,7 @@ export default function TweetPage() {
         console.error("Error fetching tweets:", error);
         setTweets(null); // Set tweets state to null on error
       });
-  }, [tweetid, tweets]); // Include tweetid in the dependency array to re-fetch when it changes
+  }, [tweetid]); // Include tweetid in the dependency array to re-fetch when it changes
 
 
   // Fetch comments based on the 'tweetid' and display it
@@ -83,9 +81,9 @@ export default function TweetPage() {
       })
       .catch((error) => {
         console.error("Error fetching comments:", error);
-        setComments(null); // Set comments state to null on error
+        // setComments(null); // Set comments state to null on error
       });
-  }, [tweetid, comments]);// Include tweetid in the dependency array to re-fetch when it changes
+  }, [tweetid]);// Include tweetid in the dependency array to re-fetch when it changes
 
 
   //add tweet to database function

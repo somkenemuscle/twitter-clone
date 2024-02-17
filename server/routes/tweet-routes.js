@@ -20,7 +20,7 @@ router.get("/", async (req, res, next) => {
 router.get('/:userId/posts', handleAsyncErr(async (req, res) => {
     const userId = req.params.userId;
     // Find all tweets by a particular user
-    const tweets = await Tweet.find({ author: userId }).sort({ createdAt: -1 }).populate('author').populate('likes');
+    const tweets = await Tweet.find({ author: userId }).sort({ createdAt: -1 }).populate('author').populate('likedBy');
     res.json(tweets);
 }));
 
@@ -68,6 +68,7 @@ router.delete("/:id", isLoggedin, handleAsyncErr(async (req, res, next) => {
 }));
 
 
+
 // Delete a specific comment by ID in campground and comment model
 router.delete("/:id/comments/:commentid", isLoggedin, handleAsyncErr(async (req, res, next) => {
     const { id, commentid } = req.params;
@@ -90,7 +91,7 @@ router.use((err, req, res, next) => {
     res.status(status).send(err);
     console.log(err)
 })
-module.exports = router; 
+module.exports = router;
 
 
 

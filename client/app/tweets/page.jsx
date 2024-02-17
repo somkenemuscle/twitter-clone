@@ -36,7 +36,7 @@ export default function Tweets() {
       .catch((error) => {
         console.error("Error fetching tweets:", error);
       });
-  }, [tweets]);
+  }, []);
 
 
   //add tweet to database function
@@ -67,6 +67,29 @@ export default function Tweets() {
     setTweetMessage(false);
   };
 
+  const handleLike = async (tweetId, userId) => {
+    try {
+      const token = localStorage.getItem('token');
+      const headers = createAuthHeaders(token);
+      const response = await axios.post(`http://localhost:4000/api/like/${tweetId}/${userId}`, {}, { headers });
+      const updatedTweet = response.data.likes;
+      setTweets(prevTweets => prevTweets.map(tweet => {
+        if (tweet._id === updatedTweet._id) {
+          return updatedTweet;
+        }
+        return tweet;
+      }));
+    } catch (error) {
+      console.error('Error liking/unliking tweet:', error);
+    }
+  };
+  //for token headers
+  function createAuthHeaders(token) {
+    return {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    };
+  }
 
   return (
     <div className="main-tweet-container">
@@ -100,6 +123,8 @@ export default function Tweets() {
             time={newtweet.createdAt}
             profile_img={newtweet.author.profile_img.url}
             likes={newtweet.likes}
+            handleLike={handleLike}
+          // likedBy={newtweet.likedBy}
           />
         ))}
       </div>

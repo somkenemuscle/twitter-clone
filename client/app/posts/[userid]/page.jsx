@@ -36,7 +36,7 @@ function posts() {
           console.error("Error fetching tweets:", error);
         });
     }
-  }, [userid,tweets]); // Include userid as a dependen
+  }, [userid]); // Include userid as a dependen
 
 
   //get infromation about a particular user from the json api
