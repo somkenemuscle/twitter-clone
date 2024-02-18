@@ -13,7 +13,7 @@ export default function Tweets() {
   //handling tweet state
   const [tweets, setTweets] = useState([]);
   const { tweetMessage, setTweetMessage } = useTweetContext();
-  
+
 
 
   //get token and see if a user is loggged in 
@@ -73,7 +73,7 @@ export default function Tweets() {
       const token = localStorage.getItem('token');
       const headers = createAuthHeaders(token);
       const response = await axios.post(`http://localhost:4000/api/like/${tweetId}/${userId}`, {}, { headers });
-      const updatedTweet = response.data.likes;
+      const updatedTweet = response.data.tweet;
       setTweets(prevTweets => prevTweets.map(tweet => {
         if (tweet._id === updatedTweet._id) {
           return updatedTweet;

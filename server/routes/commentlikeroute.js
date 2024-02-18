@@ -21,12 +21,16 @@ router.post("/:commentId/:userId", isLoggedin, handleAsyncErr(async (req, res, n
             $inc: { likes: -1 },
             $pull: { likedBy: userId }
         });
+        const updatedComment = await Comment.findById(commentId).populate('author');
+        return res.status(200).json({ message: "Comment unliked successfully", comment: updatedComment });
     } else {
         // User hasn't liked the tweet, so like it
         await Comment.findByIdAndUpdate(commentId, {
             $inc: { likes: 1 },
             $push: { likedBy: userId }
         });
+        const updatedComment = await Comment.findById(commentId).populate('author');
+        return res.status(200).json({ message: "Comment liked successfully", comment: updatedComment });
     }
 }));
 

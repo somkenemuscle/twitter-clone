@@ -92,13 +92,36 @@ export default function TweetPage() {
       const token = localStorage.getItem('token');
       const headers = createAuthHeaders(token);
       const response = await axios.post(`http://localhost:4000/api/like/${tweetId}/${userId}`, {}, { headers });
-      const updatedTweet = response.data.likes;
+      const updatedTweet = response.data.tweet;
       setTweets(updatedTweet);
     } catch (error) {
       console.error('Error liking/unliking tweet:', error);
     }
   };
 
+
+  // //like functionality for the comments
+  async function handleCommentLike(id, currentUser) {
+    try {
+      if (isLoggedIn) {
+        const token = localStorage.getItem('token');
+        // Set the Authorization header with the JWT token
+        const headers = createAuthHeaders(token);
+        const res = await axios.post(`http://localhost:4000/api/like-comment/${id}/${currentUser}`, {}, { headers })
+        const updatedComment = res.data.comment;
+        setComments(prevComments => prevComments.map(comment => {
+          if (comment._id === updatedComment._id) {
+            return updatedComment;
+          }
+          return comment;
+        }));
+      } else {
+        console.error('you have to be logged in to like')
+      }
+    } catch (error) {
+      console.error('Error liking/unliking comment:', error);
+    }
+  }
 
   //add tweet to database function
   async function addComment(comments) {
@@ -128,7 +151,7 @@ export default function TweetPage() {
       //check for authorization for deleting a post
       if (currentUserId === author_id) {
         // Make the DELETE request with the provided headers
-        const response = await axios.delete(`http://localhost:4000/api/tweets/${tweetid}/comments/${id}`, {
+        await axios.delete(`http://localhost:4000/api/tweets/${tweetid}/comments/${id}`, {
           headers: headers,
         });
         // Fetch updated tweets after successful addition
@@ -207,6 +230,7 @@ export default function TweetPage() {
               author_id={newcomment.author._id}
               deleteComment={deleteComment}
               likes={newcomment.likes}
+              handleCommentLike={handleCommentLike}
             />
           ))
         ) : null}

@@ -59,7 +59,7 @@ function posts() {
       const token = localStorage.getItem('token');
       const headers = createAuthHeaders(token);
       const response = await axios.post(`http://localhost:4000/api/like/${tweetId}/${userId}`, {}, { headers });
-      const updatedTweet = response.data.likes;
+      const updatedTweet = response.data.tweet;
       setTweets(prevTweets => prevTweets.map(tweet => {
         if (tweet._id === updatedTweet._id) {
           return updatedTweet;

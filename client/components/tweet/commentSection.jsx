@@ -43,20 +43,6 @@ export default function commentSection(props) {
     getCurrentUser();
   }, [token]);
 
-  //like functionality 
-  async function handleLike(id, currentUser) {
-    try {
-      if (isLoggedIn) {
-        // Set the Authorization header with the JWT token
-        const headers = createAuthHeaders(token);
-        await axios.post(`http://localhost:4000/api/like-comment/${id}/${currentUser}`, {}, { headers })
-      } else {
-        console.log('you need to be logged in to like this comment')
-      }
-    } catch (error) {
-      console.log("error tweets", error)
-    }
-  }
 
   //for token headers
   function createAuthHeaders(token) {
@@ -96,7 +82,7 @@ export default function commentSection(props) {
         <p className="card-text">{props.text}</p>
       </div>
       <div className="engagement-container ">
-        <span onClick={() => { handleLike(props.id, currentUserId) }} className="like-tweet engagement-count"><FontAwesomeIcon icon={faHeart} style={{ fontSize: 16, color: "orangered" }} /></span>
+        <span onClick={() => { props.handleCommentLike(props.id, currentUserId) }} className="like-tweet engagement-count"><FontAwesomeIcon icon={faHeart} style={{ fontSize: 16, color: "orangered" }} /></span>
         <span className="like-count">{props.likes}</span>
       </div>
     </div>
