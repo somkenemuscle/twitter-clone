@@ -7,13 +7,14 @@ import { useTweetContext } from "../context/TweetContext";
 import NewTweet from "@/components/new/newTweet";
 import { useUserContext } from '../context/userLog';
 
-
 export default function Tweets() {
   //global state to check if user is logged in or not
   const { isLoggedIn, setIsLoggedIn } = useUserContext();
   //handling tweet state
   const [tweets, setTweets] = useState([]);
   const { tweetMessage, setTweetMessage } = useTweetContext();
+  
+
 
   //get token and see if a user is loggged in 
   useEffect(() => {
@@ -31,7 +32,8 @@ export default function Tweets() {
   useEffect(() => {
     axios.get("http://localhost:4000/api/tweets")
       .then((res) => {
-        setTweets(res.data);
+        setTweets(res.data)
+        //setTweets(res.data);
       })
       .catch((error) => {
         console.error("Error fetching tweets:", error);

@@ -2,6 +2,7 @@ import Image from "next/image";
 import axios from "axios";
 import { useRouter } from 'next/navigation';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import {
   faComment,
   faCircleCheck,
@@ -109,7 +110,7 @@ export default function tweetContainer(props) {
                 alt="profile pic"
                 priority={true}
               />
-            ) : (<FontAwesomeIcon icon={faCircle} style={{ fontSize: 30, color: "grey" }} />)}
+            ) : (<FontAwesomeIcon icon={faCircle} style={{ fontSize: 30, color: "yellow" }} />)}
 
           </span>
           <span className="name-line">

@@ -86,13 +86,33 @@ export default function TweetPage() {
   }, [tweetid]);// Include tweetid in the dependency array to re-fetch when it changes
 
 
+  //handle like functionality
+  const handleLike = async (tweetId, userId) => {
+    try {
+      const token = localStorage.getItem('token');
+      const headers = createAuthHeaders(token);
+      const response = await axios.post(`http://localhost:4000/api/like/${tweetId}/${userId}`, {}, { headers });
+      const updatedTweet = response.data.likes;
+      setTweets(prevTweets => {
+        // Create a copy of the previous 'tweets' object
+        const updatedTweets = { ...prevTweets };
+        // Update the specific tweet with the updatedTweet
+        updatedTweets[updatedTweet._id] = updatedTweet;
+        return updatedTweet;
+      });
+    } catch (error) {
+      console.error('Error liking/unliking tweet:', error);
+    }
+  };
+
+
   //add tweet to database function
   async function addComment(comments) {
     const token = localStorage.getItem('token');
     try {
       // Set the Authorization header with the JWT token
       const headers = createAuthHeaders(token);
-      const res = await axios.post(`http://localhost:4000/api/comments/${tweetid}`, {
+      await axios.post(`http://localhost:4000/api/comments/${tweetid}`, {
         comment: comments.comment,
       }, { headers }); // Pass headers as a third argument to axios.post()
 
@@ -163,6 +183,8 @@ export default function TweetPage() {
         time={tweets.createdAt}
         profile_img={tweets.author.profile_img.url}
         likes={tweets.likes}
+        handleLike={handleLike}
+
       />
 
       {/* render create tweet form if user is logged in or not */}

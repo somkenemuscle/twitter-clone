@@ -4,6 +4,7 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import './styles/globals.css';
 import { TweetProvider } from './context/TweetContext';
 import { UserProvider } from './context/userLog';
+import { AllTweetsProvider } from './context/allTweets';
 import Navbar from '@/components/navbar/navbar';
 import { useEffect } from 'react';
 import { config } from "@fortawesome/fontawesome-svg-core";
@@ -23,10 +24,12 @@ export default function RootLayout({ children }) {
       </head>
       <body className='body'>
         <UserProvider>
-          <TweetProvider>
-            <Navbar />
-            {children}
-          </TweetProvider>
+          <AllTweetsProvider>
+            <TweetProvider>
+              <Navbar />
+              {children}
+            </TweetProvider>
+          </AllTweetsProvider>
         </UserProvider>
       </body>
     </html>
