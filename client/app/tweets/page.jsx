@@ -88,7 +88,7 @@ export default function Tweets() {
   function createAuthHeaders(token) {
     return {
       Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json'
+      'Content-Type': 'multipart/form-data'
     };
   }
 

@@ -7,6 +7,8 @@ const handleAsyncErr = require('../utils/catchAsync');
 const multer = require('multer');
 const { storage } = require('../cloudinary');
 const upload = multer({ storage });
+const { v4: uuidv4 } = require('uuid');
+const { cloudinary } = require('../cloudinary');
 
 
 // /Signup post route
@@ -27,10 +29,16 @@ router.post("/signup", upload.single('profile_img'), handleAsyncErr(async (req, 
         let imageFile = null;
         if (req.file) {
             const { path, filename } = req.file;
+            // Generate a unique public_id for the image using uuid
+            const public_id = uuidv4();
+            // Upload the image to Cloudinary with the generated public_id
+            const uploadedImage = await cloudinary.uploader.upload(path, { public_id: public_id });
+            // Set the imageFile object with the URL and filename provided by Cloudinary
             imageFile = {
-                url: path,
+                url: uploadedImage.secure_url,
                 filename: filename
             }
+            console.log(imageFile)
         }
 
         // Create a new user

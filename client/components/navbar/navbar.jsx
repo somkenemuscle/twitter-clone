@@ -48,6 +48,8 @@ function navbar() {
             headers: headers,
           });
           setCurrentUserId(response.data._id);
+        } else {
+          setCurrentUserId(null);
         }
       } catch (error) {
         console.log(error);
@@ -58,7 +60,9 @@ function navbar() {
 
   //handling redirect to a specific id ( id passed to the function from props.id)
   function gotoPage() {
-    router.push(`/posts/${currentUserId}`);
+    if (isLoggedIn) {
+      router.push(`/posts/${currentUserId}`);
+    }
   }
 
   async function logout() {

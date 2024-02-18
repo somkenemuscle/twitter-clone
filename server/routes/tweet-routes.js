@@ -8,6 +8,7 @@ const multer = require('multer');
 const { storage } = require('../cloudinary');
 const upload = multer({ storage });
 const { cloudinary } = require('../cloudinary');
+const { v4: uuidv4 } = require('uuid');
 
 // GET all tweets
 router.get("/", async (req, res, next) => {
@@ -30,8 +31,13 @@ router.post("/", isLoggedin, upload.single('image'), handleAsyncErr(async (req, 
     let imageFile;
     if (req.file) {
         const { path, filename } = req.file;
+        // Generate a unique public_id for the image using uuid
+        const public_id = uuidv4();
+        // Upload the image to Cloudinary with the generated public_id
+        const uploadedImage = await cloudinary.uploader.upload(path, { public_id: public_id });
+        // Set the imageFile object with the URL and filename provided by Cloudinary
         imageFile = {
-            url: path,
+            url: uploadedImage.secure_url,
             filename: filename
         }
     }

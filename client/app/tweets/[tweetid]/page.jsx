@@ -99,7 +99,6 @@ export default function TweetPage() {
     }
   };
 
-
   // //like functionality for the comments
   async function handleCommentLike(id, currentUser) {
     try {
