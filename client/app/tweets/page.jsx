@@ -6,6 +6,7 @@ import '../styles/tweetcontainer.css';
 import { useTweetContext } from "../context/TweetContext";
 import NewTweet from "@/components/new/newTweet";
 import { useUserContext } from '../context/userLog';
+import { UseCurrentUserId } from "../context/currentUserId";
 
 export default function Tweets() {
   //global state to check if user is logged in or not
@@ -13,8 +14,42 @@ export default function Tweets() {
   //handling tweet state
   const [tweets, setTweets] = useState([]);
   const { tweetMessage, setTweetMessage } = useTweetContext();
+  const { setCurrentUserId } = UseCurrentUserId();
+
+  let token = null;
+  useEffect(() => {
+    try {
+      const tokens = localStorage.getItem('token');
+      if (tokens) {
+        token = tokens
+      }
+    } catch (error) {
+      console.log('no token ', error)
+    }
+  }, []);
 
 
+  // Fetch current user ID if logged in
+  useEffect(() => {
+    async function getCurrentUser() {
+      try {
+        // Check if the token exists in localStorage
+        if (token) {
+          const headers = createAuthHeaders(token);
+          //get currentuser id and save to state
+          const response = await axios.get(`http://localhost:4000/api/user`, {
+            headers: headers,
+          });
+          setCurrentUserId(response.data._id);
+        } else {
+          setCurrentUserId(null);
+        }
+      } catch (error) {
+        console.error('Error fetching current user:', error);
+      }
+    }
+    getCurrentUser();
+  }, [token]);
 
   //get token and see if a user is loggged in 
   useEffect(() => {

@@ -38,7 +38,6 @@ router.post("/signup", upload.single('profile_img'), handleAsyncErr(async (req, 
                 url: uploadedImage.secure_url,
                 filename: filename
             }
-            console.log(imageFile)
         }
 
         // Create a new user

@@ -3,19 +3,19 @@ import { useEffect, useState } from 'react';
 import { faHamburger } from "@fortawesome/free-solid-svg-icons";
 import { useUserContext } from '../../app/context/userLog';
 import { useRouter } from 'next/navigation';
-import axios from "axios";
+import { UseCurrentUserId } from "@/app/context/currentUserId";
 
 // Navbar function component
 function navbar() {
   //global state to check if user is logged in or not
   const { isLoggedIn, setIsLoggedIn } = useUserContext();
+  //state for navbar
   const [loading, setLoading] = useState(true);
-  //state to store user id currently
-  const [currentUserId, setCurrentUserId] = useState(null);
-  //handling routing
+  //get the userid from global state
+  const { CurrentUserId } = UseCurrentUserId();
+  //route declaration
   const router = useRouter();
   let tk = null;
-
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -28,43 +28,14 @@ function navbar() {
     setLoading(false);
   }, [tk]);
 
-  //for token headers
-  function createAuthHeaders(token) {
-    return {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json'
-    };
-  }
-
-  // Fetch current user ID if logged in
-  useEffect(() => {
-    async function getCurrentUser() {
-      try {
-        // Check if the token exists in localStorage
-        if (tk) {
-          const headers = createAuthHeaders(tk);
-          //get currentuser id and save to state
-          const response = await axios.get(`http://localhost:4000/api/user`, {
-            headers: headers,
-          });
-          setCurrentUserId(response.data._id);
-        } else {
-          setCurrentUserId(null);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    getCurrentUser();
-  }, [tk]);
-
   //handling redirect to a specific id ( id passed to the function from props.id)
   function gotoPage() {
     if (isLoggedIn) {
-      router.push(`/posts/${currentUserId}`);
+      router.push(`/posts/${CurrentUserId}`);
     }
   }
 
+  //logout function
   async function logout() {
     localStorage.removeItem('token');
     tk = null;
