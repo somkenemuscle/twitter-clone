@@ -1,6 +1,6 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon, } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from 'react';
-import { faHamburger } from "@fortawesome/free-solid-svg-icons";
+import { faHamburger, faSignOut, faCodeMerge } from "@fortawesome/free-solid-svg-icons";
 import { useUserContext } from '../../app/context/userLog';
 import { useRouter } from 'next/navigation';
 import { UseCurrentUserId } from "@/app/context/currentUserId";
@@ -54,7 +54,7 @@ function navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-black">
       <div className="container">
-        <a className="navbar-brand" href="/">  <FontAwesomeIcon icon={faHamburger} style={{ fontSize: 18, color: "white" }} />  Retweet</a>
+        <a className="navbar-brand" href="/">  <FontAwesomeIcon icon={faCodeMerge} style={{ fontSize: 18, color: "yellow" }} />  Retweet</a>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -82,13 +82,13 @@ function navbar() {
             {isLoggedIn ? (
               <>
                 <li className="nav-item">
-                  <a onClick={logout} className="nav-link active" aria-current="page" href="/login">
-                    Logout
+                  <a onClick={() => { gotoPage() }} className="nav-link active" aria-current="page" href="#">
+                    Profile
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a onClick={() => { gotoPage() }} className="nav-link active" aria-current="page" href="#">
-                    Profile
+                  <a onClick={logout} className="nav-link active" aria-current="page" href="/login">
+                    <FontAwesomeIcon icon={faSignOut} style={{ fontSize: 15, color: "red" }} />
                   </a>
                 </li>
               </>

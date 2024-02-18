@@ -4,10 +4,20 @@
 }
 
 .alert {
-    margin: 0 45%;
-    width: 10%;
+    width: 100%;
     text-align: center;
-    padding: 7px 7px;
+    padding: 3px 3px;
+    background-color: black;
+    color: white;
+    border: 1px solid rgb(42, 40, 40);
+}
+
+.close {
+    border: none;
+    margin-left: 4%;
+    background-color: black;
+    color: red;
+    font-size: 25px;
 }
 
 .tweet-container {
@@ -66,6 +76,7 @@
     text-align: center;
     color: antiquewhite;
 }
+
 
 
 /* MEDIA QUERIES */

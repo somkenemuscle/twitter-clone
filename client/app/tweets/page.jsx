@@ -91,7 +91,7 @@ export default function Tweets() {
       const updatedTweetsResponse = await axios.get("http://localhost:4000/api/tweets");
       setTweets(updatedTweetsResponse.data); // Update local state with the updated tweets
       // Set flash message on successful tweet addition
-      setTweetMessage('Tweet added');
+      setTweetMessage('Your post was made');
     } catch (error) {
       console.log(error)
     }
@@ -129,23 +129,22 @@ export default function Tweets() {
 
   return (
     <div className="main-tweet-container">
-      {/* let user know what has been added => flash message  */}
-      {!!tweetMessage && (
-        <div className="custom-alert alert alert-dark alert-dismissible fade show" role="alert">
-          <strong>{tweetMessage}</strong>
-          <button type="button" className="close" onClick={closeAlert}>
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-      )}
-
-      {/* render create tweet form if user is logged in or not */}
-      {isLoggedIn ? (
-        <NewTweet addTweet={addTweet} />
-      ) : null}
-
-
       <div className="tweet-container">
+        {/* let user know what has been added => flash message  */}
+        {!!tweetMessage && (
+          <div className="msg custom-alert alert alert-dark alert-dismissible fade show" role="alert">
+            <strong>{tweetMessage}</strong>
+            <button type="button" className="close" onClick={closeAlert}>
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        )}
+
+        {/* render create tweet form if user is logged in or not */}
+        {isLoggedIn ? (
+          <NewTweet addTweet={addTweet} />
+        ) : null}
+
         {/* mapping through tweets and rendering them */}
         {tweets.map((newtweet, i) => (
           <TweetContainer

@@ -38,7 +38,6 @@ function posts() {
     }
   }, [userid]); // Include userid as a dependen
 
-
   //get infromation about a particular user from the json api
   useEffect(() => {
     if (userid) {

@@ -1,6 +1,6 @@
 .new-tweet-container {
-  margin: 1% auto;
-  max-width: 26%;
+  margin-bottom: 4%;
+  margin-top: 3%;
 }
 
 .form-control {
@@ -16,38 +16,4 @@
 .form-control:focus {
   background-color: black;
   color: white;
-}
-
-
-/* MEDIA QUERIES */
-@media only screen and (max-width: 1052px) {
-  .new-tweet-container {
-    margin: 2% 30%;
-  }
-}
-
-@media only screen and (max-width: 980px) {
-  .new-tweet-container {
-    margin: 2% 25%;
-  }
-}
-
-@media only screen and (max-width: 786px) {
-  .new-tweet-container {
-    margin: 2% 20%;
-  }
-}
-
-@media only screen and (max-width: 640px) {
-  .new-tweet-container {
-    margin: 2% 10%;
-  }
-}
-
-@media only screen and (max-width: 470px) {
-  .new-tweet-container {
-    margin: 2% 1%;
-  }
-
-
 }
