@@ -93,13 +93,7 @@ export default function TweetPage() {
       const headers = createAuthHeaders(token);
       const response = await axios.post(`http://localhost:4000/api/like/${tweetId}/${userId}`, {}, { headers });
       const updatedTweet = response.data.likes;
-      setTweets(prevTweets => {
-        // Create a copy of the previous 'tweets' object
-        const updatedTweets = { ...prevTweets };
-        // Update the specific tweet with the updatedTweet
-        updatedTweets[updatedTweet._id] = updatedTweet;
-        return updatedTweet;
-      });
+      setTweets(updatedTweet);
     } catch (error) {
       console.error('Error liking/unliking tweet:', error);
     }
