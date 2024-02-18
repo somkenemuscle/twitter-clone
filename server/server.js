@@ -12,10 +12,17 @@ const likeRoute = require('./routes/likeroute');
 const CommentLikeRoute = require('./routes/commentlikeroute');
 const passport = require('./passport-auth/passport');
 
+//connect to mongo atlas db
+const dbUrl = process.env.DB_URL
 // Connect to MongoDB
-mongoose.connect('mongodb://127.0.0.1/twitter')
+mongoose.connect(`${dbUrl}`)
   .then(() => console.log("API twitter database connected"))
   .catch(err => console.log("Connection error:", err));
+
+// Connect to MongoDB
+// mongoose.connect('mongodb://127.0.0.1/twitter')
+//   .then(() => console.log("API twitter database connected"))
+//   .catch(err => console.log("Connection error:", err));
 
 //express and app config
 const app = express();

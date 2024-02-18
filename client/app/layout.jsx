@@ -8,6 +8,7 @@ import { CurrentUserIdProvider } from './context/currentUserId';
 import Navbar from '@/components/navbar/navbar';
 import { useEffect } from 'react';
 import { config } from "@fortawesome/fontawesome-svg-core";
+// import 'semantic-ui-css/semantic.min.css'
 config.autoAddCss = false;
 
 export default function RootLayout({ children }) {

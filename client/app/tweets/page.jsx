@@ -142,7 +142,9 @@ export default function Tweets() {
 
         {/* render create tweet form if user is logged in or not */}
         {isLoggedIn ? (
-          <NewTweet addTweet={addTweet} />
+          <div>
+            <NewTweet addTweet={addTweet} />
+          </div>
         ) : null}
 
         {/* mapping through tweets and rendering them */}

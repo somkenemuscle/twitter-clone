@@ -3,6 +3,7 @@ import axios from "axios";
 import { useRouter } from 'next/navigation';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+
 import {
   faComment,
   faCircleCheck,
@@ -159,6 +160,8 @@ export default function tweetContainer(props) {
         <span onClick={() => handleRedirect(props.id)} className="comment-tweet engagement-count"><FontAwesomeIcon icon={faComment} style={{ fontSize: 16 }} /> </span>
         <p className="like-count">{props.likes} likes</p>
       </div>
+
+      
     </div>
 
   )
