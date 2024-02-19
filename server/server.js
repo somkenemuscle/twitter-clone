@@ -13,16 +13,16 @@ const CommentLikeRoute = require('./routes/commentlikeroute');
 const passport = require('./passport-auth/passport');
 
 // //connect to mongo atlas db
-// const dbUrl = process.env.DB_URL
-// // Connect to MongoDB
-// mongoose.connect(`${dbUrl}`)
-//   .then(() => console.log("API twitter database connected"))
-//   .catch(err => console.log("Connection error:", err));
-
+const dbUrl = process.env.DB_URL
 // Connect to MongoDB
-mongoose.connect('mongodb://127.0.0.1/twitter')
+mongoose.connect(`${dbUrl}`)
   .then(() => console.log("API twitter database connected"))
   .catch(err => console.log("Connection error:", err));
+
+// // Connect to MongoDB
+// mongoose.connect('mongodb://127.0.0.1/twitter')
+//   .then(() => console.log("API twitter database connected"))
+//   .catch(err => console.log("Connection error:", err));
 
 //express and app config
 const app = express();
@@ -53,8 +53,15 @@ app.use('/api/like', likeRoute);
 app.use('/api/like-comment', CommentLikeRoute);
 
 
-//Listen for port
+// //Listen for port
+// const PORT = process.env.PORT || 4000;
+// app.listen(PORT, () => {
+//   console.log(`TWITTER API SERVER RUNNING on port ${PORT}`);
+// });
+
 const PORT = process.env.PORT || 4000;
+const VERCEL_URL = process.env.VERCEL_URL || `http://localhost:${PORT}`;
+
 app.listen(PORT, () => {
-  console.log(`TWITTER API SERVER RUNNING on port ${PORT}`);
+  console.log(`TWITTER API SERVER RUNNING on ${VERCEL_URL}`);
 });

@@ -1,6 +1,6 @@
 'use client'
 import './login.css'
-import Footer from '@/components/footers/fixed-footer'
+import Footer from '@/components/footers/footer'
 import axios from "axios";
 import { useState } from 'react'
 import { useRouter } from 'next/navigation';
@@ -38,7 +38,7 @@ function logIn() {
     //login user and check if he/she exists function
     async function loginUser(user) {
         try {
-            const response = await axios.post("http://localhost:4000/api/tweets/login", {
+            const response = await axios.post("https://twitter-clone-tfdd-lq92ihbdl-ojukwu-somkenes-projects.vercel.app/api/tweets/login", {
                 username: user.username,
                 password: user.password
             });

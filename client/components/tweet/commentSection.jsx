@@ -31,7 +31,7 @@ export default function commentSection(props) {
         if (token) {
           const headers = createAuthHeaders(token);
           //get currentuser id and save to state
-          const response = await axios.get(`http://localhost:4000/api/user`, {
+          const response = await axios.get(`https://twitter-clone-tfdd-lq92ihbdl-ojukwu-somkenes-projects.vercel.app/user`, {
             headers: headers,
           });
           setCurrentUserId(response.data._id);
