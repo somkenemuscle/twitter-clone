@@ -12,7 +12,7 @@ const likeRoute = require('./routes/likeroute');
 const CommentLikeRoute = require('./routes/commentlikeroute');
 const passport = require('./passport-auth/passport');
 
-//connect to mongo atlas db
+// //connect to mongo atlas db
 const dbUrl = process.env.DB_URL
 // Connect to MongoDB
 mongoose.connect(`${dbUrl}`)
