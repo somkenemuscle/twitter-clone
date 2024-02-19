@@ -135,9 +135,8 @@ function signUp() {
                         </div>
 
                         {/* profile setup */}
-                        <div className="col-lg-12 col-md-12" >
-                            profile pic
-                            <input type="file" name="profile_img" onChange={handleChange} />
+                        <div className=" col-lg-12 col-md-12" >
+                            <input className='form-control' type="file" name="profile_img" onChange={handleChange} />
                         </div>
 
                         <div className="col-lg-12 col-md-12">

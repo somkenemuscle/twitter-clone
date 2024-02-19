@@ -8,7 +8,8 @@ import {
   faComment,
   faCircleCheck,
   faHeart,
-  faCircle
+  faCircle,
+  
 } from "@fortawesome/free-solid-svg-icons";
 import '../tweet/tweet-comment.css';
 import { useState, useEffect } from "react";
@@ -72,7 +73,7 @@ export default function tweetContainer(props) {
     }
   }
 
-  
+
   //for token headers
   function createAuthHeaders(token) {
     return {
@@ -98,6 +99,8 @@ export default function tweetContainer(props) {
 
   return (
     <div className="tweet-card">
+
+     
       <div >
         <div>
           <span>
@@ -161,7 +164,7 @@ export default function tweetContainer(props) {
         <p className="like-count">{props.likes} likes</p>
       </div>
 
-      
+
     </div>
 
   )

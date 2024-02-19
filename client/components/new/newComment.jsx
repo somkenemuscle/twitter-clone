@@ -48,7 +48,7 @@ function newComment(props) {
         <div>
             <div className='new-tweet-container'>
                 <form className={validated ? 'was-validated' : ''} noValidate onSubmit={handlesubmit}>
-                    <textarea onChange={handleChange} value={comments.comment} required className="tweet-input form-control" rows="3" placeholder='Say something' name='comment'></textarea>
+                    <textarea onChange={handleChange} value={comments.comment} required className="tweet-input form-control" rows="2" placeholder='Say something' name='comment'></textarea>
                     <div className="invalid-feedback">
                         say something
                     </div>
