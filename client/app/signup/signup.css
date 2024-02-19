@@ -9,7 +9,8 @@
 }
 
 .form-control::placeholder {
-  color: rgb(42, 40, 40);
+  /* color: rgb(42, 40, 40); */
+  color: grey;
   /* Change to your desired placeholder color */
 }
 
